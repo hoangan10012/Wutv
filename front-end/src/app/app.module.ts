@@ -5,28 +5,40 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UIModule } from './ui/ui.module';
 import { HomeModule } from './home/home.module';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AngularFireModule} from '@angular/fire'
-import { environment } from 'src/environments/environment';
+
+// import { FlexLayoutModule } from '@angular/flex-layout';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { SidenavService } from './ui/service/sidenav.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-  
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
     UIModule,
     HomeModule,
-    BrowserAnimationsModule,
+
     NgbModule,
     AngularFireModule.initializeApp(environment.firebase)
+
+    FlexLayoutModule,
+
     
   ],
-  providers: [],
+  providers: [SidenavService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
