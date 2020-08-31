@@ -1,1 +1,31 @@
-<p>sidebar works!</p>
+<div class="sidenav_container">
+    <div fxLayout="column" fxLayoutGap="10px" style="height: 100%; width: 100%;">
+
+        <div class="user_menu">
+            <div>
+                <a>
+                    <img class="jim" src="https://a57.foxnews.com/media2.foxnews.com/BrightCove/694940094001/2018/06/21/931/524/694940094001_5800293009001_5800284148001-vs.jpg?ve=1&tl=1" alt="">
+                    <span [@animateText]="linkText ? 'show' : 'hide'"></span>
+                </a>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div>
+            <div style="text-align: center;">
+                <div mat-menu-item *ngFor="let page of pages">
+                    <mat-icon>{{page?.icon}}</mat-icon>
+                    <span *ngIf='sideNavState'>{{ page?.name }} </span>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <span class="spacer"></span>
+    <div fxLayout="row" fxLayoutAlign="end center" style="padding: 0px 10px;">
+        <button mat-icon-button (click)="onSinenavToggle()">
+        <mat-icon *ngIf="sideNavState">arrow_left</mat-icon>
+        <mat-icon *ngIf="!sideNavState">arrow_right</mat-icon>
+      </button>
+    </div>
+</div>
