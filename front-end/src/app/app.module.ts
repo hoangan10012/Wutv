@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { UIModule } from './ui/ui.module';
 import { HomeModule } from './home/home.module';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AngularFireModule} from '@angular/fire'
 
@@ -14,8 +14,8 @@ import {AngularFireModule} from '@angular/fire'
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidenavService } from './ui/service/sidenav.service';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -33,9 +33,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
     NgbModule,
     AngularFireModule.initializeApp(environment.firebase)
-
-    FlexLayoutModule,
-
+    
     
   ],
   providers: [SidenavService],
