@@ -1,0 +1,74 @@
+.mat-elevation-z6 {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom-style: solid;
+    border-color: whitesmoke;
+}
+
+.example-full-width {
+    width: 40%;
+}
+
+.rbox {
+    width: 60px;
+    height: 57px;
+    display: flex;
+}
+
+.logo_name {
+    width: 60px;
+    height: 57px;
+}
+
+.avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.inputcenter {
+    display: flex;
+    align-items: center;
+}
+
+.inputcenter input:focus {
+    outline: none;
+    background-color: none;
+}
+
+.inputcenter input {
+    font-size: 15px;
+    border-style: none;
+}
+
+.search {
+    left: 30vw;
+    width: 40vw;
+    top: 0px;
+    z-index: 1000;
+    // width: 300px;
+}
+
+div .mat-form-field-infix {
+    border-style: none !important;
+}
+
+.mat-toolbar {
+    //position: fixed;
+    top: 0px;
+    //z-index: 5;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+@media screen and (max-width:580px) {
+    .search {
+        display: none;
+    }
+    .example-icon favorite-icon {
+        display: none;
+    }
+}
