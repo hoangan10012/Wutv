@@ -1,8 +1,8 @@
 <div>
     <app-navbar [sidenav]="leftSidenav"></app-navbar>
 
-    <mat-sidenav-container>
-        <mat-sidenav #leftSidenav mode="side" opened="true" style="background: #F3F3F3;">
+    <mat-sidenav-container hasBackdrop="true">
+        <mat-sidenav #leftSidenav mode="side" opened="false" style="background: #F3F3F3;" hasBackdrop='true'>
             <app-sidebar></app-sidebar>
         </mat-sidenav>
         <mat-sidenav-content>
