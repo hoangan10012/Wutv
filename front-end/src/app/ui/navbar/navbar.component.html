@@ -1,1 +1,53 @@
-<p>navbar works!</p>
+<mat-toolbar class="mat-elevation-z6" color="pirmary">
+
+
+
+    <div class="rbox">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)='toggleNavBar()'>
+
+        <!-- <button mat-icon-button (click)="sidenav.toggle();" class="example-icon" aria-label="Example icon-button with menu icon"> -->
+            <mat-icon >menu</mat-icon>
+        </button>
+        <img class="logo_name" src="../../../assets/logo.svg" alt="logo">
+    </div>
+    <span class="example-spacer"></span>
+
+    <div class="search" (mouseleave)="changeInputColor('white')" (mouseenter)="changeInputColor('#f5f5f5')" (click)="changeInputColor('white')">
+        <!-- <mat-form-field class="example-full-width" appearance="none" style="border-style:none"> -->
+
+        <mat-form-field style="width: 90%;">
+            <div class="inputcenter">
+                <mat-icon style="margin-right: 10px;">search</mat-icon>
+                <input matInput placeholder="" class="input" style="color: black;" [ngStyle]="this.inputBackgroundFlip">
+            </div>
+        </mat-form-field>
+
+        <!-- </mat-form-field> -->
+
+    </div>
+    <span class="example-spacer"></span>
+
+    <div>
+        <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="app" aria-label="Example icon-button with heart icon">
+          <mat-icon>video_call</mat-icon>
+        </button>
+        <mat-menu #app="matMenu">
+            <button mat-menu-item>
+            <mat-icon >live_tv</mat-icon>
+            <span>Upload Video</span>
+          </button>
+            <button mat-menu-item>
+            <mat-icon>rss_feed</mat-icon>
+            <span>Live</span>
+          </button>
+        </mat-menu>
+
+        <button mat-button>Sign in with Google</button>
+
+    </div>
+
+</mat-toolbar>
+
+
+
+<!-- <button (click)="check()">asdasdasdas</button> -->

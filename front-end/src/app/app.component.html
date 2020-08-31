@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<div>
+    <app-navbar [sidenav]="leftSidenav"></app-navbar>
+
+    <mat-sidenav-container>
+        <mat-sidenav #leftSidenav mode="side" opened="true" style="background: #F3F3F3;">
+            <app-sidebar></app-sidebar>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="main_content">
+                <div style="padding: 20px">
+                    <router-outlet></router-outlet>
+
+                </div>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>
