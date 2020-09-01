@@ -16,7 +16,7 @@ export class WatchComponent implements OnInit {
   incomingData$ : Array<string>;
 
   constructor(private BoxChatService : BoxChatService ) {
-      this.listen(' ');
+      this.listen('chỗ này sau này login ');
    }
    public listen(id:string){
      this.BoxChatService.listen(id);
