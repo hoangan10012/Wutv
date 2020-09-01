@@ -8,17 +8,23 @@ import { HomeModule } from './home/home.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import {AngularFireModule} from '@angular/fire'
+import{AngularFireAuthModule} from '@angular/fire/auth'
+
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidenavService } from './ui/service/sidenav.service';
-import { environment } from 'src/environments/environment';
-import {AngularFireAuthModule } from '@angular/fire/auth';
+import {environment} from 'src/environments/environment'
+import { DropzoneDirective } from './directive/dropzone.directive';
 
 
+import{UploadModule} from './upload/upload.module'
+import{UploadComponent} from './upload/upload.component'
+import { from } from 'rxjs';
 @NgModule({
   declarations: [
     AppComponent,
-
+    DropzoneDirective,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
@@ -29,8 +35,11 @@ import {AngularFireAuthModule } from '@angular/fire/auth';
     UIModule,
     HomeModule,
     NgbModule,
-    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
+    UploadModule,
+
+    HttpClientModule,
+    
     AngularFireAuthModule,
 
 
