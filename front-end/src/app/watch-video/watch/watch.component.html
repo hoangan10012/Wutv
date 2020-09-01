@@ -77,13 +77,13 @@
         <div class="comment-input">
             <mat-form-field class="comment-form-field">
                 <!-- <img src="https://lh3.googleusercontent.com/-YCOk87TeQlc/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfVLz0rqXokP9-NeqnO_6ThX5xfRQ/photo.jpg"> -->
-                <input matInput placeholder="Add Your Comment" type="text" />
+                <input matInput placeholder="Add Your Comment" [(ngModel)]="Content" />
             </mat-form-field>
             <div class="comment-button-cancel-accept">
                 <button mat-raised-button style="margin-right: 20px">
           Cancel
         </button>
-                <button mat-raised-button color="primary">
+                <button mat-raised-button color="primary" (click)="send()">
           Accept
         </button>
             </div>
