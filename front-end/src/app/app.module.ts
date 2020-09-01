@@ -18,7 +18,7 @@ import {AngularFireAuthModule } from '@angular/fire/auth';
 @NgModule({
   declarations: [
     AppComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -29,16 +29,11 @@ import {AngularFireAuthModule } from '@angular/fire/auth';
     UIModule,
     HomeModule,
     NgbModule,
-<<<<<<< HEAD
-    AngularFireModule.initializeApp(environment.firebase)
-
-
-=======
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-   
->>>>>>> be39ac57604ce56387cde99dc95526e8c6b7b534
+
+
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]

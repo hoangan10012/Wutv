@@ -12,8 +12,8 @@ export class BoxChatService {
       content:content,
     };
     try{
-    let comment = await this.firestore.collection('User').doc(from).collection('Comment').doc(Date.now().toString()).set(doc);
-    console.log(comment);
+    let comment = await this.firestore.collection('Comment').doc(from).set(doc);
+    console.log(doc.content);
   }
   catch(err){
     console.log (err);
