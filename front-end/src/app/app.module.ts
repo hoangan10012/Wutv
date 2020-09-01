@@ -6,22 +6,26 @@ import { AppComponent } from './app.component';
 import { UIModule } from './ui/ui.module';
 import { HomeModule } from './home/home.module';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AngularFireModule} from '@angular/fire'
 
-// import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidenavService } from './ui/service/sidenav.service';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {environment} from 'src/environments/environment'
+import { DropzoneDirective } from './directive/dropzone.directive';
 
 
-
+import{UploadModule} from './upload/upload.module'
+import{UploadComponent} from './upload/upload.component'
+import { from } from 'rxjs';
 @NgModule({
   declarations: [
     AppComponent,
-
+    DropzoneDirective,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +36,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HomeModule,
 
     NgbModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    UploadModule
 
-    FlexLayoutModule,
+
 
     
   ],
