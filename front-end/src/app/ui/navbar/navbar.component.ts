@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { SidenavService } from '../service/sidenav.service';
 import {AuthenticationService} from '../service/auth.service';
-import {UploadComponent} from '../../upload/upload.component';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,9 @@ export class NavbarComponent implements OnInit {
   // public sideNavState: boolean = false;
   showFiller = false;
   constructor(
-    private _sidenavService: SidenavService,public auth:AuthenticationService
+    private _sidenavService: SidenavService,
+    public auth:AuthenticationService,
+    public router : Router
   ) { }
   @Input() sidenav: MatSidenav;
   ngOnInit(): void {
