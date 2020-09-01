@@ -24,8 +24,8 @@ export class SidebarComponent implements OnInit {
 
   public pages: Page[] = [
     {name: 'Home', link:'some-link', icon: 'home'},
-    {name: 'Upload', link:'some-link', icon: 'star'},
-    {name: 'Send email', link:'some-link', icon: 'send'},
+    {name: 'Upload', link:'some-link', icon: 'video_call'},
+    {name: 'Liked videos', link:'some-link', icon: 'thumb_up_alt'},
   ]
 
   constructor(private _sidenavService: SidenavService) {
