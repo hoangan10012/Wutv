@@ -22,9 +22,8 @@ export class WatchComponent implements OnInit {
      this.BoxChatService.listen(id);
    }
     public send(){
-    this.BoxChatService.send("chỗ này sau này login",this.Content);
+    this.BoxChatService.send("chỗ này sau này login ",this.Content);
    }
   ngOnInit(): void {
   }
-
 }
