@@ -10,3 +10,15 @@
         background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
         background-size: cover;
     }
+    
+    .example-card {
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+        transition: 0.8s ease;
+        cursor: pointer;
+        margin: 30px;
+    }
+    
+    .example-card:hover {
+        transform: scale(1.13);
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+    }
