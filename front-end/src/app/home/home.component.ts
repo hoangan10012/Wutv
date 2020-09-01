@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import {AuthenticationService} from '../services/auth.service';
-import{AuthenticationService} from '../services/auth.service'
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
       id: '1',
       title: 'Lorem',
       desc: ' The Shiba Inu is the smallest',
-      src: "https://material.angular.io/assets/img/examples/shiba2.jpg"
+      src: "https://material.angular.io/assets/img/examples/shiba2.jpg",
     },
     {
       id: '2',
@@ -46,7 +46,9 @@ export class HomeComponent implements OnInit {
       src: "https://material.angular.io/assets/img/examples/shiba2.jpg"
     }
   ];
-  constructor(public auth:AuthenticationService) { }
+  constructor() { 
+ 
+  }
 
   ngOnInit(): void {
   }

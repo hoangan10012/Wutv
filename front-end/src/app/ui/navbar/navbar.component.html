@@ -1,7 +1,4 @@
 <mat-toolbar class="mat-elevation-z6" color="pirmary">
-
-
-
     <div class="rbox">
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle();">
 
@@ -42,7 +39,7 @@
           </button>
         </mat-menu>
 
-        <button mat-button>Sign in with Google</button>
+        <button mat-button (click)='this.auth.login()'>Sign in with Google</button>
 
     </div>
 
