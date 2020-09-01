@@ -11,9 +11,9 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://wutv-red.firebaseio.com"
 });
-<<<<<<< HEAD
 app.post("/v1/video",async (req,res)=>{
   const video = req.body;
+  
   console.log(video);
   try{
     let doc=await admin.firestore().collection("videos").doc(video.id);
@@ -88,9 +88,7 @@ app.delete("/v1/video/:id",async (req,res)=>{
   }
  
 })
-app.listen(port, () => {
-  console.log("server is running")
-=======
+
 //----------------------------------------------- For User
 app.post("/v1/User/Post", async(req, res) => {
     const User = req.body;
@@ -234,7 +232,6 @@ app.put('/v1/Comment/Put', async(req, res) => {
     });
 });
 
-app.listen(8080, () => {
+app.listen(port, () => {
     console.log("server is running")
->>>>>>> 7a947019b6a153307ba0e8d13634d3f9518cef79
 })
