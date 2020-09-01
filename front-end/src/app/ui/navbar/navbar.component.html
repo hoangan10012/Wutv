@@ -5,18 +5,17 @@
         <!-- <button mat-icon-button (click)="sidenav.toggle();" class="example-icon" aria-label="Example icon-button with menu icon"> -->
             <mat-icon >menu</mat-icon>
         </button>
-
         <a (click)="router.navigate(['/home'])"> <img class="logo_name" src="../../../assets/logo.svg" alt="logo"> </a>
     </div>
     <span class="example-spacer"></span>
 
-    <div class="search" (mouseleave)="changeInputColor('white')" (mouseenter)="changeInputColor('#f5f5f5')" (click)="changeInputColor('white')">
+    <div class="search">
         <!-- <mat-form-field class="example-full-width" appearance="none" style="border-style:none"> -->
 
         <mat-form-field style="width: 90%;">
             <div class="inputcenter">
                 <mat-icon style="margin-right: 10px;">search</mat-icon>
-                <input matInput placeholder="" class="input" style="color: black;" [ngStyle]="this.inputBackgroundFlip">
+                <input matInput placeholder="">
             </div>
         </mat-form-field>
 
@@ -26,41 +25,32 @@
     <span class="example-spacer"></span>
 
     <div>
-        <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="app" aria-label="Example icon-button with heart icon">
+        <button mat-icon-button class="iconNav" [matMenuTriggerFor]="app" aria-label="Example icon-button with heart icon">
           <mat-icon>video_call</mat-icon>
         </button>
         <mat-menu #app="matMenu">
-            <button mat-menu-item>
+            <button mat-menu-item class="menuNav">
             <mat-icon >live_tv</mat-icon>
             <span>Upload Video</span>
           </button>
-            <button mat-menu-item>
+            <button mat-menu-item class="menuNav">
             <mat-icon>rss_feed</mat-icon>
             <span>Live</span>
           </button>
         </mat-menu>
 
-        <button mat-button *ngIf=" auth.user ==null " (click)='this.auth.login()'>Sign in with Google</button>
-
-        <!-- <div id="user-info">
-              <img src="{{ userGG.user.avatarURL }}" alt="" />
-              <div>
-                <p>{{ userGG.user.name }}</p>
-                <p>{{ userGG.user.email }}</p>
-              </div>
-            </div> -->
-        <!-- <button *ngIf="auth.user != null" mat-menu-item>
-                <a mat-button (click)="auth.logout()">
-                    Log out
-                </a>
-            </button> -->
-        <button *ngIf="auth.user !=null" (click)="auth.logout()"></button>
-
+        <button mat-raised-button style="background-color: #FCDD90;" *ngIf=" auth.user ==null " (click)='this.auth.login()'>
+            <mat-icon aria-hidden="false" >account_circle</mat-icon>
+            Sign in</button>
+        <button class="khung_avatar" *ngIf="auth.user!=null" mat-button [matMenuTriggerFor]="menu" style="background: none; outline: none;">
+        <img *ngIf="auth.user!=null" class="avatar" [src]='auth.user.photoURL'></button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="this.auth.logout()" style="border: none; outline: none;">
+            <mat-icon>login</mat-icon>
+            <span>Logout</span>
+            </button>
+        </mat-menu>
 
     </div>
 
 </mat-toolbar>
-
-
-
-<!-- <button (click)="check()">asdasdasdas</button> -->

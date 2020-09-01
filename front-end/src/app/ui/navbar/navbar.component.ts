@@ -22,11 +22,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
   inputBackgroundFlip={
-    'background':'white'
+    'background':'#dfe49b'
   }
 
   changeInputColor(color:string){
-    console.log("dasdasd")
+    
     this.inputBackgroundFlip = {
       'background':color
     }
