@@ -1,14 +1,12 @@
 <mat-toolbar class="mat-elevation-z6" color="pirmary">
-
-
-
     <div class="rbox">
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)='toggleNavBar()'>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle();">
 
         <!-- <button mat-icon-button (click)="sidenav.toggle();" class="example-icon" aria-label="Example icon-button with menu icon"> -->
             <mat-icon >menu</mat-icon>
         </button>
-        <img class="logo_name" src="../../../assets/logo.svg" alt="logo">
+
+        <a (click)="router.navigate(['/home'])"> <img class="logo_name" src="../../../assets/logo.svg" alt="logo"> </a>
     </div>
     <span class="example-spacer"></span>
 
@@ -42,7 +40,22 @@
           </button>
         </mat-menu>
 
-        <button mat-button>Sign in with Google</button>
+        <button mat-button *ngIf=" auth.user ==null " (click)='this.auth.login()'>Sign in with Google</button>
+
+        <!-- <div id="user-info">
+              <img src="{{ userGG.user.avatarURL }}" alt="" />
+              <div>
+                <p>{{ userGG.user.name }}</p>
+                <p>{{ userGG.user.email }}</p>
+              </div>
+            </div> -->
+        <!-- <button *ngIf="auth.user != null" mat-menu-item>
+                <a mat-button (click)="auth.logout()">
+                    Log out
+                </a>
+            </button> -->
+        <button *ngIf="auth.user !=null" (click)="auth.logout()"></button>
+
 
     </div>
 

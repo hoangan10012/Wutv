@@ -5,11 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UIModule } from './ui/ui.module';
 import { HomeModule } from './home/home.module';
-
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 import {AngularFireModule} from '@angular/fire'
-
+import{AngularFireAuthModule} from '@angular/fire/auth'
 
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -31,17 +30,19 @@ import { from } from 'rxjs';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NoopAnimationsModule,
     MatSidenavModule,
     UIModule,
     HomeModule,
-
     NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
-    UploadModule
+    UploadModule,
 
-
-
+    HttpClientModule,
     
+    AngularFireAuthModule,
+
+
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]
