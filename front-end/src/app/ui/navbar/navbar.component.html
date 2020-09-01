@@ -39,7 +39,22 @@
           </button>
         </mat-menu>
 
-        <button mat-button (click)='this.auth.login()'>Sign in with Google</button>
+        <button mat-button *ngIf=" auth.user ==null " (click)='this.auth.login()'>Sign in with Google</button>
+
+        <!-- <div id="user-info">
+              <img src="{{ userGG.user.avatarURL }}" alt="" />
+              <div>
+                <p>{{ userGG.user.name }}</p>
+                <p>{{ userGG.user.email }}</p>
+              </div>
+            </div> -->
+        <!-- <button *ngIf="auth.user != null" mat-menu-item>
+                <a mat-button (click)="auth.logout()">
+                    Log out
+                </a>
+            </button> -->
+        <button *ngIf="auth.user !=null" (click)="auth.logout()"></button>
+
 
     </div>
 
