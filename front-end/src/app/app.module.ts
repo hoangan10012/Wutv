@@ -33,8 +33,8 @@ import { environment } from 'src/environments/environment';
 
     NgbModule,
     AngularFireModule.initializeApp(environment.firebase)
-    
-    
+
+
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]
