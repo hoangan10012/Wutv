@@ -16,6 +16,12 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
     UploadRoutingModule,
     MatIconModule,
     MatButtonModule
+  ],
+  exports:[
+    UploaderComponent, UploadTaskComponent,
+    UploadRoutingModule,
+    MatIconModule,
+    MatButtonModule
   ]
 })
 export class UploadModule { }
