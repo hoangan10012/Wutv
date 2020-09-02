@@ -8,7 +8,7 @@ const routes: Routes = [{ path: 'Login', loadChildren: () => import('./login/log
 { path: 'Home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) }, 
 { path: 'Watch-video', loadChildren: () => import('./watch-video/watch-video.module').then(m => m.WatchVideoModule) }
 , { path: 'Upload', loadChildren: () => import('./upload/upload.module').then(m => m.UploadModule) },
-{path:"watch/:id",component:WatchComponent},
+{path:"watch",component:WatchComponent},
 {path:"home",component:HomeComponent},
 {path:"video",component:VideoComponent}
 ];
