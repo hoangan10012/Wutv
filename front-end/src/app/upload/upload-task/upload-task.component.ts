@@ -1,5 +1,5 @@
 
-import { Component, OnInit,Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -21,10 +21,12 @@ export class UploadTaskComponent implements OnInit {
   downloadURL: string;
   constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
 
+  // tslint:disable-next-line:typedef
   ngOnInit() {
     this.startUpload();
   }
-    startUpload(){
+  // tslint:disable-next-line:typedef
+  startUpload() {
 
     // The storage path
     const path = `test/${Date.now()}_${this.file.name}`;
@@ -38,17 +40,18 @@ export class UploadTaskComponent implements OnInit {
     // Progress monitoring
     this.percentage = this.task.percentageChanges();
 
-    this.snapshot   = this.task.snapshotChanges().pipe(
+    this.snapshot = this.task.snapshotChanges().pipe(
       tap(console.log),
       // The file's download URL
-      finalize( async() =>  {
+      finalize(async () => {
         this.downloadURL = await ref.getDownloadURL().toPromise();
 
-        this.db.collection('videos').add( { downloadURL: this.downloadURL, path });
+        this.db.collection('videos').add({ downloadURL: this.downloadURL, path });
       }),
     );
   }
 
+  // tslint:disable-next-line:typedef
   isActive(snapshot) {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }
