@@ -12,7 +12,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
 
 @NgModule({
@@ -21,15 +20,15 @@ import { MatListModule } from '@angular/material/list';
     CommonModule,
     MatToolbarModule,
     MatIconModule,
+    MatSidenavModule,
     MatFormFieldModule,
     MatMenuModule,
     MatButtonModule,
     MatInputModule,
     MatExpansionModule,
-    MatSidenavModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    NoopAnimationsModule,
+    // BrowserModule,
+    // BrowserAnimationsModule,
+    // NoopAnimationsModule,
     FormsModule,
     MatListModule
   ],

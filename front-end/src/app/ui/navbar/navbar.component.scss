@@ -10,15 +10,19 @@
     width: 40%;
 }
 
+.example-icon {
+    outline: none;
+}
+
 .rbox {
     width: 60px;
     height: 57px;
-    display: flex;
 }
 
 .logo_name {
     width: 60px;
     height: 57px;
+    cursor: pointer;
 }
 
 .avatar {
