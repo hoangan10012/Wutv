@@ -31,7 +31,7 @@
         <mat-menu #app="matMenu">
             <button (click)="router.navigate(['/upload'])" mat-menu-item class="menuNav">
             <mat-icon >live_tv</mat-icon>
-            <span>Upload Video</span>
+            <span (click)="router.navigate(['/home'])">Upload Video</span>
           </button>
             <button mat-menu-item class="menuNav">
             <mat-icon>rss_feed</mat-icon>

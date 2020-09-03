@@ -3,6 +3,10 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
+
+import {HttpClient} from '@angular/common/http'
+import {environment} from '../../../environments/environment'
+
 @Component({
   selector: 'app-upload-task',
   templateUrl: './upload-task.component.html',
@@ -16,7 +20,7 @@ export class UploadTaskComponent implements OnInit {
   percentage: Observable<number>;
   snapshot: Observable<any>;
   downloadURL: string;
-  constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
+  constructor(private storage: AngularFireStorage, private db: AngularFirestore,private httpClient:HttpClient) { }
 
   // tslint:disable-next-line:typedef
   ngOnInit() {
@@ -24,7 +28,6 @@ export class UploadTaskComponent implements OnInit {
   }
   // tslint:disable-next-line:typedef
   startUpload() {
-
     // The storage path
     const path = `test/${Date.now()}_${this.file.name}`;
 
@@ -40,10 +43,11 @@ export class UploadTaskComponent implements OnInit {
     this.snapshot = this.task.snapshotChanges().pipe(
       tap(console.log),
       // The file's download URL
-      finalize(async () => {
+      finalize(async  () => {
         this.downloadURL = await ref.getDownloadURL().toPromise();
-
-        this.db.collection('videos').add({ downloadURL: this.downloadURL, path });
+      
+        // this.db.collection('videos').add({ downloadURL: this.downloadURL, path });
+        await this.httpClient.post(environment.endpoint+"/v1/video",{downloadURL:this.downloadURL,path}).toPromise();
       }),
     );
   }
