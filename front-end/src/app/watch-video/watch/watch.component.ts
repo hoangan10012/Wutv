@@ -6,11 +6,12 @@ import {ActivatedRoute} from '@angular/router'
   styleUrls: ['./watch.component.scss']
 })
 export class WatchComponent implements OnInit {
+  id;
   
-  constructor( private route : ActivatedRoute ) { }
+  constructor( private route : ActivatedRoute ) {}
 
-  ngOnInit(): void {
-    
+  ngOnInit() {
+    this.id = this.route.snapshot.params['id'];
   }
 
 }

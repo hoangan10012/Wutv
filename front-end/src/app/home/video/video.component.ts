@@ -14,8 +14,8 @@ export class VideoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onSelect (watch){
-    this.router.navigate(['/watch', watch.id]);
+  onSelect (data){
+    this.router.navigate(['/watch', data.id]);
   }
 
 }
