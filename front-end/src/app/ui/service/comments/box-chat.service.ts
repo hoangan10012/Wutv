@@ -24,7 +24,7 @@ export class BoxChatService {
     addMessage(content): Observable<any> {
       return this.httpClient.post(environment.endpoint + '/v1/Comment/Post', {
         uid: this.auth.user.uid,
-                content: content
+        content: content
       });
     }
     // DeleteMessage(data): Observable<any> {
