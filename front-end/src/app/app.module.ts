@@ -30,12 +30,13 @@ import { from } from 'rxjs';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+
+    // NoopAnimationsModule,
     MatSidenavModule,
     UIModule,
     HomeModule,
     NgbModule,
-    AngularFireModule.initializeApp(environment.firebase),
     UploadModule,
 
     HttpClientModule,
