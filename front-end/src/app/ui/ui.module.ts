@@ -11,8 +11,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [SidebarComponent, NavbarComponent],
@@ -30,7 +31,9 @@ import { MatListModule } from '@angular/material/list';
     // BrowserAnimationsModule,
     // NoopAnimationsModule,
     FormsModule,
-    MatListModule
+    MatListModule,
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [SidebarComponent, NavbarComponent]
 })
