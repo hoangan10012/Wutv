@@ -2,27 +2,28 @@ const express = require('express')
 const app = express()
 const port = 8080
 const bodyParser = require('body-parser');
+const cor = require('cors')();
 const admin = require("firebase-admin");
 const serviceAccount = require("../key/key.json");
 
 app.use(bodyParser.json());
-
+app.use(cor);
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://wutv-red.firebaseio.com"
 });
 app.post("/v1/video",async (req,res)=>{
   const video = req.body;
-  
   console.log(video);
+
   try{
-    let doc=await admin.firestore().collection("videos").doc(video.id);
-    if(await (await doc.get()).exists){
-      res.send(video.id+" "+"is already exist")
-    }else{
-      doc.set(video)
-      res.send(video.id+" "+"is created");
-    }
+    let doc=await admin.firestore().collection("videos").doc().set(video);
+    // if(await (await doc.get()).exists){
+    //   res.send(video.id+" "+"is already exist")
+    // }else{
+    //   doc.set(video)
+    //   res.send(video.id+" "+"is created");
+    // }
   }catch(e){
     res.send("failed to create"+" "+video.id);
   }
@@ -42,6 +43,20 @@ app.get("/v1/videos",async (req,res)=>{
       videos :[],
     })
   }
+})
+app.get("/v1/video/:id",async(req,res)=>{
+    const {id} = req.query;
+    if(id==undefined){
+        res.send({
+            massage:"Please set the video id"
+        });
+        return;
+    }
+   let data= (await admin.firestore().collection("videos").doc(id).get()).data();
+   res.send({
+       data:data,
+   })
+   
 })
 app.put("/v1/video/:id",async (req,res)=>{
   const {id} = req.params;
@@ -232,7 +247,7 @@ app.delete("/v1/video/:id",async (req,res)=>{
         });
     });
 
-app.listen(port, () => {
+app.listen(port,'127.0.0.1', () => {
     console.log("server is running")
 });
 
