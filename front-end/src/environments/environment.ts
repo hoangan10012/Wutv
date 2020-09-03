@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  endpoint : "http://127.0.0.1/8080",
   firebase: {
     apiKey: "AIzaSyAsEiGIPknqU-d7mZ1wfLYdsUx5e6ZvCY0",
     authDomain: "wutv-red.firebaseapp.com",
