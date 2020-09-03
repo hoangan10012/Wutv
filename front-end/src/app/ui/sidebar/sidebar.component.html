@@ -12,9 +12,9 @@
         <mat-divider></mat-divider>
         <div>
             <div style="text-align: center;">
-                <div mat-menu-item *ngFor="let page of pages">
-                    <mat-icon>{{page?.icon}}</mat-icon>
-                    <span>{{ page?.name }} </span>
+                <div mat-menu-item *ngFor="let page of pages" [routerLink]="'/'+page.link">
+                    <mat-icon style="color: black ;">{{page?.icon}}</mat-icon>
+                    <span style="font-weight: bolder;">{{ page?.name }} </span>
                     <mat-divider></mat-divider>
                 </div>
             </div>
