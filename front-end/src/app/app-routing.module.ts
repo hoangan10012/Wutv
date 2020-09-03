@@ -15,7 +15,7 @@ const routes: Routes = [{ path: 'Login', loadChildren: () => import('./login/log
   {path: 'uploadtask', component:UploadTaskComponent }
 ]},
 // { path: 'watch', loadChildren: () => import('./watch-video/watch-video.module').then(m => m.WatchVideoModule) },
-{path:"watch",component:WatchComponent},
+{path:"video/:id",component:WatchComponent},
 {path:"home",component:HomeComponent},
 {path:"video",component:VideoComponent}
 ];

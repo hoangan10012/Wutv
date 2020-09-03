@@ -1,17 +1,14 @@
-
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-
 @Component({
   selector: 'app-upload-task',
   templateUrl: './upload-task.component.html',
   styleUrls: ['./upload-task.component.scss']
 })
 export class UploadTaskComponent implements OnInit {
-
   @Input() file: File;
 
   task: AngularFireUploadTask;
