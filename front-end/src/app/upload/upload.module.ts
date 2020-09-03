@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { UploadRoutingModule } from './upload-routing.module';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -14,10 +13,12 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
   imports: [
     CommonModule,
     UploadRoutingModule
-  ], exports: [
+  ], 
+  exports: [
     UploaderComponent, UploadTaskComponent,
     MatIconModule,
     MatButtonModule
-  ]
+  ],
+  
 })
 export class UploadModule { }

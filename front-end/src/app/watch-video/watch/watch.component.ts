@@ -3,6 +3,7 @@ import {BoxChatService} from '../../ui/service/comments/box-chat.service'
 import { Observable } from 'rxjs';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-watch',
@@ -16,8 +17,12 @@ export class WatchComponent implements OnInit {
   content : string;
   incomingData$ : Array<string>;
 
-  constructor(private BoxChatService : BoxChatService ) {
-
+  public videoid;
+  constructor(private BoxChatService : BoxChatService, private route: ActivatedRoute ) {
+      this.listen('chỗ này sau này login ');
+   }
+   public listen(id:string){
+     this.BoxChatService.listen(id);
    }
 
     public send(content: string){
@@ -26,6 +31,8 @@ export class WatchComponent implements OnInit {
     }).subscribe();
 
    }
-  ngOnInit(): void {
+  ngOnInit() {
+    let id = parseInt(this.route.snapshot.paramMap.get('id'))
+    this.videoid = id;
   }
 }

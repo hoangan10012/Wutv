@@ -12,7 +12,7 @@ export class AuthenticationService
 {
   public user:firebase.User=null;
   private usr:User;
-  endpoint = "http://localhost:";
+  endpoint = "http://127.0.0.1";
   port = 8080;
   constructor(public auth:AngularFireAuth, public router: Router, private httpClient:HttpClient ) { }
   public async login()
