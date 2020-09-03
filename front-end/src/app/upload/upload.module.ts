@@ -13,10 +13,12 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
   imports: [
     CommonModule,
     UploadRoutingModule
-  ], exports: [
+  ], 
+  exports: [
     UploaderComponent, UploadTaskComponent,
     MatIconModule,
     MatButtonModule
-  ]
+  ],
+  
 })
 export class UploadModule { }

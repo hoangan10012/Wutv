@@ -23,8 +23,8 @@ export class SidebarComponent implements OnInit {
   public linkText: boolean = true;
 
   public pages: Page[] = [
-    {name: 'Home', link:'some-link', icon: 'home'},
-    {name: 'Upload', link:'some-link', icon: 'video_call'},
+    {name: 'Home', link:'home', icon: 'home'},
+    {name: 'Upload', link:'upload', icon: 'video_call'},
     {name: 'Liked videos', link:'some-link', icon: 'thumb_up_alt'},
   ]
 

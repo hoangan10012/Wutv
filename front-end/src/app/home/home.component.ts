@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
       title: 'Lorem',
       desc: ' The Shiba Inu is the smallest',
       src: "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      
     },
     {
       id: '2',
