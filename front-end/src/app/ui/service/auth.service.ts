@@ -35,7 +35,7 @@ export class AuthenticationService
       this.router.navigate(["/home"]);
   
     }catch(err){
-        console.error(err)
+        console.log(err)
     }
   }
   public async logout (){

@@ -19,15 +19,15 @@ export class WatchComponent implements OnInit {
 
   public videoid;
   constructor(private BoxChatService : BoxChatService, private route: ActivatedRoute ) {
-      this.listen('chỗ này sau này login ');
+      // this.listen('chỗ này sau này login ');
    }
-   public listen(id:string){
-     this.BoxChatService.listen(id);
-   }
+  //  public listen(id:string){
+  //    this.BoxChatService.listen(id);
+  //  }
 
-    public send(content: string){
+    public send(){
     this.BoxChatService.addMessage({
-      comment: content
+      comment: this.content
     }).subscribe();
 
    }
