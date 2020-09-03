@@ -2,39 +2,31 @@ const express = require('express');
 const app = express();
 const port = 8080;
 const bodyParser = require('body-parser');
+
 const admin = require("firebase-admin");
-const serviceAccount = require("../key/key.json");
-<<<<<<< HEAD
-
-const cors = require('cors');
-
-app.use(cors());
-
-=======
+const serviceAccount = require("../key/key.json")
 const cors = require('cors');
 app.use(cors());
->>>>>>> 1dd67106e351ca07d3c6542d3aad9d8d6e424311
 app.use(bodyParser.json());
-
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://wutv-red.firebaseio.com"
 });
-app.post("/v1/video", async(req, res) => {
-    const video = req.body;
+app.post("/v1/video",async (req,res)=>{
+  const video = req.body;
+  console.log(video);
 
-    console.log(video);
-    try {
-        let doc = await admin.firestore().collection("videos").doc(video.id);
-        if (await (await doc.get()).exists) {
-            res.send(video.id + " " + "is already exist")
-        } else {
-            doc.set(video)
-            res.send(video.id + " " + "is created");
-        }
-    } catch (e) {
-        res.send("failed to create" + " " + video.id);
-    }
+  try{
+    let doc=await admin.firestore().collection("videos").doc().set(video);
+    // if(await (await doc.get()).exists){
+    //   res.send(video.id+" "+"is already exist")
+    // }else{
+    //   doc.set(video)
+    //   res.send(video.id+" "+"is created");
+    // }
+  }catch(e){
+    res.send("failed to create"+" "+video.id);
+  }
 })
 app.get("/v1/videos", async(req, res) => {
     try {
@@ -52,7 +44,7 @@ app.get("/v1/videos", async(req, res) => {
         })
     }
 })
-<<<<<<< HEAD
+
 app.put("/v1/video/:id", async(req, res) => {
     const { id } = req.params;
     if (id == undefined) {
@@ -74,42 +66,7 @@ app.put("/v1/video/:id", async(req, res) => {
                 res.send({
                     message: "update unsuccessfully"
                 })
-=======
-app.delete("/v1/video/:id", async(req, res) => {
-    const { id } = req.params;
-    app.put("/v1/video/:id", async(req, res) => {
-        const { id } = req.params;
-        if (id == undefined) {
-            res.send({
-                massage: "Please set the vid"
-            })
-            return;
-        }
-        let doc = admin.firestore().collection("videos").doc(id);
-        if ((await doc.get()).exists) {
-            if (id == req.body.id) {
-                try {
-                    await doc.set(req.body);
-                    res.send({
-                        massage: "Update Successfully"
-                    })
-                    return;
-                } catch (e) {
-                    res.send({
-                        message: "update unsuccessfully"
-                    })
-                }
-                return;
-            }
-            res.send({
-                message: "id is not match"
-            });
-            return;
-        }
-        res.send({
-            message: "Id does not exist"
-        });
-    })
+
     app.delete("/v1/video/:id", async(req, res) => {
         const { id } = req.params;
         if (id == undefined) {
@@ -125,6 +82,53 @@ app.delete("/v1/video/:id", async(req, res) => {
         }
 
     })
+  }
+)
+app.get("/v1/video/:id",async(req,res)=>{
+    const {id} = req.query;
+    if(id==undefined){
+        res.send({
+            massage:"Please set the video id"
+        });
+        return;
+    }
+   let data= (await admin.firestore().collection("videos").doc(id).get()).data();
+   res.send({
+       data:data,
+   })
+   
+})
+app.put("/v1/video/:id",async (req,res)=>{
+  const {id} = req.params;
+  if(id == undefined){
+      res.send({
+          massage:"Please set the vid"
+      })
+      return;
+  }
+  let doc = admin.firestore().collection("videos").doc(id);
+  if((await doc.get()).exists){
+      if(id == req.body.id){
+          try{await doc.set(req.body);
+              res.send({
+                  massage:"Update Successfully"
+              })
+              return;
+          }catch(e){
+                  res.send({
+                      message:"update unsuccessfully"
+                  })
+              }return;
+      }res.send({
+          message:"id is not match"
+      });
+      return;
+  }
+  res.send({
+      message:"Id does not exist"
+  });
+})
+})
 
     //----------------------------------------------- For User
     app.post("/v1/User/Post", async(req, res) => {
@@ -211,7 +215,7 @@ app.delete("/v1/video/:id", async(req, res) => {
                         status: "Update fail !!!!!"
                     });
                 }
->>>>>>> 1dd67106e351ca07d3c6542d3aad9d8d6e424311
+
             }
             return;
         }
@@ -376,12 +380,8 @@ app.put('/v1/Comment/Put', async(req, res) => {
     });
 });
 
-<<<<<<< HEAD
-app.listen(port, () => {
+app.listen(port,'127.0.0.1', () => {
     console.log("server is running")
-=======
-    app.listen(port, () => {
-        console.log("server is running")
-    })
->>>>>>> 1dd67106e351ca07d3c6542d3aad9d8d6e424311
 });
+
+
