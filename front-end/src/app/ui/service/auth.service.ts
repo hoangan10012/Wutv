@@ -11,6 +11,9 @@ import {User} from '../../models/user.model'
 export class AuthenticationService 
 {
   public user:firebase.User=null;
+  private usr:User;
+  endpoint = "http://127.0.0.1";
+  port = 8080;
   constructor(public auth:AngularFireAuth, public router: Router, private httpClient:HttpClient ) { }
   public async login()
   {
@@ -18,8 +21,8 @@ export class AuthenticationService
       let provider = new firebase.auth.GoogleAuthProvider();
       await this.auth.signInWithPopup(provider);
       this.user=await this.auth.currentUser;
-      await this.httpClient.post<User>(environment.endpoint+'/v1/User/Post', {
-        uid: this.user.uid,
+      await this.httpClient.post(this.endpoint+this.port+'/v1/User/Post', {
+        id: this.user.uid,
         type: "",
         lastTime: new Date().getDate(),
         name: this.user.displayName,
@@ -28,8 +31,7 @@ export class AuthenticationService
         videos: [],
         likes : [],
         dislikes: []
-      });
-
+      }).toPromise();
       this.router.navigate(["/home"]);
   
     }catch(err){

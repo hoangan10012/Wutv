@@ -11,6 +11,7 @@ export class UploaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   isHovering: boolean;
 
   files: Array<File> = [];
