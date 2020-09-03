@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UploadComponent } from './upload.component';
 
-const routes: Routes = [{ path: '', component: UploadComponent }];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
