@@ -13,24 +13,29 @@ import { AuthenticationService } from '../auth.service';
 })
 export class BoxChatService {
 
-
+  vid: String;
   constructor(
     private firestore: AngularFirestore,
     private auth: AuthenticationService,
     public router: Router,
     private httpClient:HttpClient
-    ) { }
+    ) {
+    }
 
     addMessage(content): Observable<any> {
+
       return this.httpClient.post(environment.endpoint + '/v1/Comment/Post', {
         uid: this.auth.user.uid,
-        content: content
-      });
-    }
-    // DeleteMessage(data): Observable<any> {
-    //   return this.httpClient.delete(environment.endpoint + '/v1/Comment/Post', data);
-    // }
-    // UpdateMessage(data): Observable<any> {
-    //   return this.httpClient.put(environment.endpoint + '/v1/Comment/Post', data);
-    // }
+        content: content,
+        vid: this.vid,
+        time: Date.now(),
+        likes : [],
+        dislikes: [],
+        })
+  }
+public listenComment (vid:string){
+  return this.firestore.collection("videos").doc(vid).get();
 }
+  }
+
+

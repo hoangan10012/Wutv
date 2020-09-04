@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {BoxChatService} from '../../ui/service/comments/box-chat.service'
 import { Observable } from 'rxjs';
 import { ActivatedRouteSnapshot } from '@angular/router';
+import {AngularFirestore} from '@angular/fire/firestore'
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,27 +13,43 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WatchComponent implements OnInit {
 
-  fromId : string;
-  ToId : string;
+  getcomment =[];
   content : string;
-  incomingData$ : Array<string>;
-
-  public videoid;
-  constructor(private BoxChatService : BoxChatService, private route: ActivatedRoute ) {
-      this.listen('chỗ này sau này login ');
-   }
-   public listen(id:string){
-     this.BoxChatService.listen(id);
-   }
+  public videoid = "4knjDpixpya6mEzBort1";
+  constructor(private BoxChatService : BoxChatService, private route: ActivatedRoute,private fb : AngularFirestore ) {
+  }
 
     public send(content: string){
     this.BoxChatService.addMessage({
       comment: content
-    }).subscribe();
+          }).subscribe();
 
+    // this.fb.collection('Comment').doc().snapshotChanges();
    }
+   public async  listen (){
+    await this.BoxChatService.listenComment(this.videoid).subscribe(data => {
+      let arrayId  = data.data()["comments"] as Array<string>;
+      let docRefComment = this.fb.collection("Comment");
+
+      arrayId.forEach(element =>{
+       docRefComment.doc(element).get().toPromise().then(value =>{
+         console.log(value.data());
+         this.getcomment.push(value.data());
+        })
+      })
+    })
+
+     }
+
+  //  public del(content: string){
+  //   this.BoxChatService.DeleteMessage({
+  //     comment: content
+  //         }).subscribe();
+  //       }
+
   ngOnInit() {
     let id = parseInt(this.route.snapshot.paramMap.get('id'))
-    this.videoid = id;
+    //this.videoid = id;
+    this.listen();
   }
 }

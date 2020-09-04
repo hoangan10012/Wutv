@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Router} from '@angular/router';
+import { BoxChatService } from 'src/app/ui/service/comments/box-chat.service';
 
 
 @Component({
@@ -10,11 +11,12 @@ import {Router} from '@angular/router';
 export class VideoComponent implements OnInit {
 
   @Input() data;
-  constructor(private router: Router ) { }
+  constructor(private router: Router, public boxChatService: BoxChatService) { }
 
   ngOnInit(): void {
   }
   onSelect (data){
+    this.boxChatService.vid = data.id;
     this.router.navigate(['/watch', data.id]);
   }
 
