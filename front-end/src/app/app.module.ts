@@ -20,6 +20,7 @@ import { DropzoneDirective } from './directive/dropzone.directive';
 import { UploadModule } from './upload/upload.module';
 import { UploadComponent } from './upload/upload.component';
 import { from } from 'rxjs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,18 +32,15 @@ import { from } from 'rxjs';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-
+    AngularFireAuthModule,
     // NoopAnimationsModule,
     MatSidenavModule,
     UIModule,
     HomeModule,
     NgbModule,
     UploadModule,
-
+    MatSnackBarModule,
     HttpClientModule,
-    AngularFireAuthModule,
-
-
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]

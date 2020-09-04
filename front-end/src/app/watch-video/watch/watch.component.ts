@@ -19,11 +19,10 @@ export class WatchComponent implements OnInit {
 
   public videoid;
   constructor(private BoxChatService : BoxChatService, private route: ActivatedRoute) {}
-   
-
-    public send(content: string){
+  
+    public send(){
     this.BoxChatService.addMessage({
-      comment: content
+      comment: this.content
     }).subscribe();
 
    }
