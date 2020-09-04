@@ -5,15 +5,20 @@ import { WatchDetailsComponent } from './watch-video/watch-details/watch-details
 import { HomeComponent} from './home/home.component'
 import { VideoComponent } from './home/video/video.component';
 import { UploaderComponent } from './upload/uploader/uploader.component';
-import{UploadTaskComponent} from './upload/upload-task/upload-task.component'
+import{UploadTaskComponent} from './upload/upload-task/upload-task.component';
+import {UpthumbnailComponent}from './upload/upthumbnail/upthumbnail.component';
+import {UpthumbnailTaskComponent}from './upload/upthumbnail-task/upthumbnail-task.component'
+import {UploadComponent} from '../app/upload/upload.component'
 
 const routes: Routes = [{ path: 'Login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
 { path: 'Home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
 { path: 'Watch-video', loadChildren: () => import('./watch-video/watch-video.module').then(m => m.WatchVideoModule) }
-,{path: 'upload', component: UploaderComponent, children: [
-  {path: 'uploader', component: UploaderComponent},
-  {path: 'uploadtask', component:UploadTaskComponent }
-]},
+,{path: 'upload', component: UploadComponent, children: [
+    {path: 'uploader', component: UploaderComponent},
+    {path: 'uploadtask', component:UploadTaskComponent},
+    {path: 'upthumbnail', component: UpthumbnailComponent},
+    {path: 'upthumbnailtask', component:UpthumbnailTaskComponent}
+  ]},
 // { path: 'watch', loadChildren: () => import('./watch-video/watch-video.module').then(m => m.WatchVideoModule) },
 {path:"watch/:id",component:WatchComponent},
 {path:"home",component:HomeComponent},
@@ -25,3 +30,10 @@ const routes: Routes = [{ path: 'Login', loadChildren: () => import('./login/log
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+// {path: 'upload', component: UploaderComponent, children: [
+//   {path: 'uploader', component: UploaderComponent},
+//   {path: 'uploadtask', component:UploadTaskComponent},
+//   {path: 'upthumbnail', component: UpthumbnailComponent},
+//   {path: 'upthumbnailtask', component:UpthumbnailTaskComponent}
+// ]},

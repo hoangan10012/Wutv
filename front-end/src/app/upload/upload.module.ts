@@ -6,10 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { UploaderComponent } from './uploader/uploader.component';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
+import { UpthumbnailComponent } from './upthumbnail/upthumbnail.component';
+import { UpthumbnailTaskComponent } from './upthumbnail-task/upthumbnail-task.component';
 
 
 @NgModule({
-  declarations: [UploaderComponent, UploadTaskComponent],
+  declarations: [UploaderComponent, UploadTaskComponent, UpthumbnailComponent, UpthumbnailTaskComponent],
   imports: [
     CommonModule,
     UploadRoutingModule
@@ -17,7 +19,7 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
   exports: [
     UploaderComponent, UploadTaskComponent,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,UpthumbnailComponent,UpthumbnailTaskComponent
   ],
   
 })
