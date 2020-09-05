@@ -84,13 +84,18 @@
             <div class="comment-button-cancel-accept">
                 <button mat-raised-button style="margin-right: 20px; background-color: #f44336; color: white;">Delete
         </button>
-                <button style="background-color: #dfe49b; color: black;" mat-raised-button color="primary">
+                <button style="background-color: #dfe49b; color: black;" mat-raised-button color="primary" (click)="send(content)">
           Accept
         </button>
+                <br>
+
+                <div *ngFor="let content  of getcomment">
+                    <p>{{content.content.comment}}</p>
+                </div>
                 <!-- <button style="background-color: #dfe49b; color: black;" mat-raised-button color="primary" (click)="listen(content)">
           Show all Comment
-        </button> -->
-                <p>{{getcomment['content']}}</p>
+        </button> -->>
+                <!-- <p>{{getcomment['content']}}</p> -->
             </div>
         </div>
 
