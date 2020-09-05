@@ -51,10 +51,6 @@ export class UploadTaskComponent implements OnInit {
       // The file's download URL
       finalize(async  () => {
         this.downloadURL = await ref.getDownloadURL().toPromise();
-<<<<<<< HEAD
-
-=======
->>>>>>> 663474d50d279751c21eefeca1607e446708ebcc
         // this.db.collection('videos').add({ downloadURL: this.downloadURL, path });
         await this.httpClient.post(environment.endpoint+"/v1/video",{id: this.auth.user.uid ,content: {downloadURL:this.downloadURL,path}}).toPromise();
       }),
