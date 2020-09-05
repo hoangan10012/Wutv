@@ -18,12 +18,8 @@ export class WatchComponent implements OnInit {
   incomingData$ : Array<string>;
 
   public videoid;
-  constructor(private BoxChatService : BoxChatService, private route: ActivatedRoute ) {
-      // this.listen('chỗ này sau này login ');
-   }
-  //  public listen(id:string){
-  //    this.BoxChatService.listen(id);
-  //  }
+  constructor(private BoxChatService : BoxChatService, private route: ActivatedRoute) {}
+   
 
     public send(){
     this.BoxChatService.addMessage({
@@ -31,6 +27,7 @@ export class WatchComponent implements OnInit {
     }).subscribe();
 
    }
+  
   ngOnInit() {
     let id = parseInt(this.route.snapshot.paramMap.get('id'))
     this.videoid = id;

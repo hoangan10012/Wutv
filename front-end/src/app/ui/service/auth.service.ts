@@ -18,6 +18,7 @@ export class AuthenticationService
     this._auth.user.subscribe(usr => {
       if (usr != null) {
         this.user = usr;
+        
         this.logged = true;
       } else { this.logged = false; }
     });
