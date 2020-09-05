@@ -5,7 +5,10 @@ import { HomeComponent} from './home/home.component'
 import { UploaderComponent } from './upload/uploader/uploader.component';
 import{UploadTaskComponent} from './upload/upload-task/upload-task.component';
 import {AuthGuard} from './guards/auth.guard';
+<<<<<<< HEAD
 //import {} from './'
+=======
+>>>>>>> c806f65ba9527758503deeb7ce8721c4783e9160
 import {UpthumbnailComponent}from './upload/upthumbnail/upthumbnail.component';
 import {UpthumbnailTaskComponent}from './upload/upthumbnail-task/upthumbnail-task.component'
 import {UploadComponent} from '../app/upload/upload.component'

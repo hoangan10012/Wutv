@@ -77,14 +77,20 @@
         <div class="comment-input">
             <mat-form-field class="comment-form-field">
                 <!-- <img src="https://lh3.googleusercontent.com/-YCOk87TeQlc/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfVLz0rqXokP9-NeqnO_6ThX5xfRQ/photo.jpg"> -->
-                <input matInput placeholder="Add Your Comment" [(ngModel)]="content">
+                <input matInput placeholder="Add Your Comment" [(ngModel)]="this.content">
+
+
             </mat-form-field>
             <div class="comment-button-cancel-accept">
-                <button mat-raised-button style="margin-right: 20px; background-color: #f44336; color: white;">Cancel
+                <button mat-raised-button style="margin-right: 20px; background-color: #f44336; color: white;">Delete
         </button>
-                <button style="background-color: #dfe49b; color: black;" mat-raised-button color="primary" >
+                <button style="background-color: #dfe49b; color: black;" mat-raised-button color="primary">
           Accept
         </button>
+                <!-- <button style="background-color: #dfe49b; color: black;" mat-raised-button color="primary" (click)="listen(content)">
+          Show all Comment
+        </button> -->
+                <p>{{getcomment['content']}}</p>
             </div>
         </div>
 
