@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {BoxChatService} from '../../ui/service/comments/box-chat.service'
+import { BoxChatService } from '../../ui/service/comments/box-chat.service'
 import { Observable } from 'rxjs';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import {AngularFirestore} from '@angular/fire/firestore'
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http'
 
 @Component({
   selector: 'app-watch',
@@ -12,44 +12,39 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./watch.component.scss']
 })
 export class WatchComponent implements OnInit {
-
-  getcomment =[];
-  content : string;
-  public videoid = "4knjDpixpya6mEzBort1";
-  constructor(private BoxChatService : BoxChatService, private route: ActivatedRoute,private fb : AngularFirestore ) {
+  data_have = false;
+  fromId: string;
+  ToId: string;
+  content: string;
+  incomingData$: Array<string>;
+  vid: string;
+  src: string;
+  vidName: string;
+  public videoid;
+  constructor(private BoxChatService: BoxChatService, private route: ActivatedRoute, private http: HttpClient) {
+    this.vid = this.route.snapshot.params['id'];
+    console.log(this.vid);
+    
+    // this.listen('chỗ này sau này login ');
   }
+  //  public listen(id:string){
+  //    this.BoxChatService.listen(id);
+  //  }
 
-    public send(content: string){
+  public send(content: string) {
     this.BoxChatService.addMessage({
       comment: content
-          }).subscribe();
+    }).subscribe()
 
-    // this.fb.collection('Comment').doc().snapshotChanges();
-   }
-   public async  listen (){
-    await this.BoxChatService.listenComment(this.videoid).subscribe(data => {
-      let arrayId  = data.data()["comments"] as Array<string>;
-      let docRefComment = this.fb.collection("Comment");
-
-      arrayId.forEach(element =>{
-       docRefComment.doc(element).get().toPromise().then(value =>{
-         console.log(value.data());
-         this.getcomment.push(value.data());
-        })
-      })
-    })
-
-     }
-
-  //  public del(content: string){
-  //   this.BoxChatService.DeleteMessage({
-  //     comment: content
-  //         }).subscribe();
-  //       }
-
+  }
   ngOnInit() {
-    let id = parseInt(this.route.snapshot.paramMap.get('id'))
-    //this.videoid = id;
-    this.listen();
+    this.http.get(environment.endpoint + '/v1/video/' + this.vid).toPromise().then(data => {
+      console.log(data);
+      this.src = data['data']['downloadURL'];
+      console.log(this.src)
+      this.vidName = data ['path'];
+      this.data_have = true;
+    })
+  
   }
 }
