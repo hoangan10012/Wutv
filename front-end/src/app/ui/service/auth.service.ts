@@ -28,7 +28,7 @@ export class AuthenticationService
       let provider = new auth.GoogleAuthProvider();
       await this._auth.signInWithPopup(provider);
       this.user = await this._auth.currentUser;
-      await this.httpClient.post(this.endpoint+this.port+'/v1/User/Post', {
+      await this.httpClient.post(this.endpoint+':'+this.port+'/v1/User/Post', {
         id: this.user.uid,
         type: "",
         lastTime: new Date().getDate(),

@@ -89,26 +89,29 @@
                     <button style="background-color: #4fc2f7; color: black;" mat-raised-button color="primary" (click)="send(content)">
           Accept
         </button>
-                    <div *ngFor="let content of getcomment">
-                        <p>{{content.content.comment}}</p>
-                    </div>
+                    <!-- <div *ngFor="let content of getcomment">
+                        <p>{{content.content.Comment}}</p>
+                    </div> -->
                 </div>
             </div>
-            <mat-card class="example-card">
-                <mat-card-header>
-                    <div mat-card-avatar class="avatar">
-                        avatar
-                    </div>
-                    <mat-card-title>Shiba Inu</mat-card-title>
-                </mat-card-header>
+            <div *ngIf="this.getcomment">
+                <mat-card *ngFor="let content of getcomment" class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="avatar">
+                            <img [src]="content.photoURL" alt="" style="width: 30px; height: 30px; border-radius: 50%;">
+                        </div>
+                        <mat-card-title>{{content.name}}</mat-card-title>
+                    </mat-card-header>
 
-                <mat-card-content>
-                    <p>
-                        Hiển thị cmt
-                    </p>
-                </mat-card-content>
+                    <mat-card-content>
+                        <p>
+                            {{content.content}}
+                        </p>
+                    </mat-card-content>
 
-            </mat-card>
+                </mat-card>
+            </div>
+
         </div>
     </div>
 </div>
