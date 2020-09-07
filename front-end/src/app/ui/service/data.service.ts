@@ -18,6 +18,71 @@ import { AngularFireFunctions } from '@angular/fire/functions';
 })
 export class DataService {
 
-  constructor() { }
+  constructor( // tslint:disable-next-line:variable-name
+    private _afs: AngularFirestore,
+    // tslint:disable-next-line:variable-name
+    private _storage: AngularFireStorage,
+    // tslint:disable-next-line:variable-name
+    private _afn: AngularFireFunctions) { }
 
+
+    addLike( vid, uid) {
+      this._afs
+      .collection('videos')
+      .doc(vid)
+      .update({
+        likes : firebase.firestore.FieldValue.arrayUnion(uid)
+      });
+      this._afs
+      .collection('users')
+      .doc(uid)
+      .update({
+        likes: firebase.firestore.FieldValue.arrayUnion(vid)
+      });
+    }
+
+    addDislike( vid, uid) {
+      this._afs
+      .collection('videos')
+      .doc(vid)
+      .update({
+        dislikes : firebase.firestore.FieldValue.arrayUnion(uid)
+      });
+      this._afs
+      .collection('users')
+      .doc(uid)
+      .update({
+        dislikes : firebase.firestore.FieldValue.arrayUnion(vid)
+      });
+    }
+
+    removeLike(vid, uid) {
+      this._afs
+      .collection('videos')
+      .doc(vid)
+      .update({
+        likes : firebase.firestore.FieldValue.arrayRemove(uid)
+      });
+      this._afs
+      .collection('users')
+      .doc(uid)
+      .update({
+        likes : firebase.firestore.FieldValue.arrayRemove(vid)
+      });
+    }
+
+    removeDislike(vid, uid) {
+      this._afs
+      .collection('videos')
+      .doc(vid)
+      .update({
+        dislikes : firebase.firestore.FieldValue.arrayRemove(uid)
+      });
+      this._afs
+      .collection('users')
+      .doc(uid)
+      .update({
+        dislikes : firebase.firestore.FieldValue.arrayRemove(vid)
+      });
+    }
 }

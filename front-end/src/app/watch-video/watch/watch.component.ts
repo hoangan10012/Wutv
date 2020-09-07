@@ -6,7 +6,8 @@ import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http'
 import { AngularFirestore } from '@angular/fire/firestore';
-
+import {LikeDislikeService} from '../../ui/service/like-dislike/like-dislike.service'
+import {AuthenticationService} from "../../ui/service/auth.service"
 @Component({
   selector: 'app-watch',
   templateUrl: './watch.component.html',
@@ -19,10 +20,12 @@ export class WatchComponent implements OnInit {
   getcomment = [];
   vid: string;
   src: string;
+  button_like = '';
+  button_dislike = '';
   vidName: string;
   public videoid;
 
-  constructor(private BoxChatService: BoxChatService, private route: ActivatedRoute, private http: HttpClient,private fb :AngularFirestore) {
+  constructor(public current_user: AuthenticationService,private like_dislike_service:LikeDislikeService,private BoxChatService: BoxChatService, private route: ActivatedRoute, private http: HttpClient,private fb :AngularFirestore) {
     this.vid = this.route.snapshot.params['id'];
   }
 
@@ -44,9 +47,64 @@ export class WatchComponent implements OnInit {
         })
       })
        }
-  
-   
-  
+       async check_user() {
+        if (!this.current_user.logged) {
+          await this.current_user.login();
+          window.location.reload();
+        }
+      }
+   //like and dislike button
+  async activebutton_like() {
+    this.button_like = 'primary';
+    await this.like_dislike_service.addLike(
+      this.vid,
+      this.current_user.user.uid
+    );
+  }
+  async activebutton_dislike() {
+    this.button_dislike = 'primary';
+    await this.like_dislike_service.addDislike(
+      this.vid,
+      this.current_user.user.uid
+    );
+  }
+  async disablebutton_like() {
+    this.button_like = '';
+    await this.like_dislike_service.removeLike(
+      this.vid,
+      this.current_user.user.uid
+    );
+  }
+  async disablebutton_dislike() {
+    this.button_dislike = '';
+    await this.like_dislike_service.removeDislike(
+      this.vid,
+      this.current_user.user.uid
+    );
+  }
+  async onclick_like() {
+    await this.check_user();
+    if (this.button_like != '') {
+      this.disablebutton_like();
+    } else if (this.button_dislike != '') {
+      this.activebutton_like();
+      this.disablebutton_dislike();
+    } else {
+      this.activebutton_like();
+    }
+  }
+  async onclick_dislike() {
+    await this.check_user();
+    if (this.button_dislike != '') {
+      this.disablebutton_dislike();
+    } else if (this.button_like != '') {
+      this.activebutton_dislike();
+      this.disablebutton_like();
+    } else {
+      this.activebutton_dislike();
+    }
+  }
+
   ngOnInit() {
     this.http.get(environment.endpoint + '/v1/video/' + this.vid).toPromise().then(data => {
       console.log(data);
@@ -55,9 +113,9 @@ export class WatchComponent implements OnInit {
       console.log(this.src)
       this.vidName = data ['path'];
       this.data_have = true;
-      
+
          this.listen();
     })
-  
+
   }
 }
