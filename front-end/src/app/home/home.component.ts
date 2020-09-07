@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../ui/service/data.service';
 // import {AuthenticationService} from '../services/auth.service';
 
 @Component({
@@ -8,49 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  fakeData = [
-    {
-      id: '4knjDpixpya6mEzBort1',
-      title: 'Lorem',
-      desc: ' The Shiba Inu is the smallest',
-      src: "https://material.angular.io/assets/img/examples/shiba2.jpg",
+  listvideo =[]
 
-    },
-    {
-      id: '2',
-      title: 'Lorem',
-      desc: ' The Shiba Inu is the smallest ',
-      src: "https://material.angular.io/assets/img/examples/shiba2.jpg"
-    },
-    {
-      id: '3',
-      title: 'Lorem',
-      desc: ' The Shiba Inu is the smallest ',
-      src: "https://material.angular.io/assets/img/examples/shiba2.jpg"
-    },
-    {
-      id: '4',
-      title: 'Lorem',
-      desc: ' The Shiba Inu is the smallest',
-      src: "https://material.angular.io/assets/img/examples/shiba2.jpg"
-    },
-    {
-      id: '5',
-      title: 'Lorem',
-      desc: ' The Shiba Inu is the smallest',
-      src: "https://material.angular.io/assets/img/examples/shiba2.jpg"
-    },
-    {
-      id: '6',
-      title: 'Lorem',
-      desc: ' The Shiba Inu is the smallest',
-      src: "https://material.angular.io/assets/img/examples/shiba2.jpg"
-    }
-  ];
-  constructor() {
+  constructor( private dataservice : DataService) {
+    this.getvideo();
 
   }
-
+async getvideo (){
+  let video = await this.dataservice.getvideo();
+  console.log (video);
+  this.listvideo = video
+  console.log(this.listvideo)
+}
   ngOnInit(): void {
   }
 
