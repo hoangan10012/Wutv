@@ -112,6 +112,7 @@ app.put("/v1/video/:id", async(req, res) => {
 //----------------------------------------------- For User
 app.post("/v1/User/Post", async(req, res) => {
     const User = req.body;
+    console.log(User);
     try {
         let doc = await admin.firestore().collection("User").doc(User.id);
         if ((await doc.get()).exists) {
@@ -190,7 +191,6 @@ app.post("/v1/Comment/Post", async(req, res) => {
             uid: Comment.uid,
             content: Comment.content.comment,
         }).then(async data => {
-            console.log(data.id)
             let cid = data.id;
             await db.collection("videos").doc(Comment.vid).update({
                 commentId: admin.firestore.FieldValue.arrayUnion(cid)
