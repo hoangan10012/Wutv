@@ -3,38 +3,64 @@ const app = express();
 const port = 8080;
 const bodyParser = require('body-parser');
 
+const ffmpeg = require('ffmpeg');
+
 const admin = require("firebase-admin");
 const serviceAccount = require("../key/key.json");
 
 const cors = require('cors');
+const { firestore } = require('firebase-admin');
+
+
 app.use(cors());
 app.use(bodyParser.json());
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://wutv-red.firebaseio.com"
 });
-app.post("/v1/video", async(req, res) => {
+admin.storage()
+app.post("/v1/video", async (req, res) => {
     const video = req.body;
     console.log(video);
-
     try {
-        let doc = await admin.firestore().collection("videos").doc().set(video);
-        // if(await (await doc.get()).exists){
-        //   res.send(video.id+" "+"is already exist")
-        // }else{
-        //   doc.set(video)
-        //   res.send(video.id+" "+"is created");
-        // }
+        await admin.firestore().collection("videos").add({
+            "uid": video.uid,
+            "thumbnailURL": video.thumbnailURL,
+            "downloadURL": video.downloadURL,
+            "commentId": video.commentId,
+            "likes": video.likes,
+            "dislikes": video.dislikes,
+            "views": video.views,  
+            
+        }).then(value =>{
+            console.log(value.id)
+            res.send(value.id);
+        });
     } catch (e) {
-        res.send("failed to create" + " " + video.id);
+        res.send("failed to create");
+        console.log(e.code);
+        console.log(e.msg);
     }
-})
-app.get("/v1/videos", async(req, res) => {
+});
+app.post("/v1/thumbnail", async (req, res) => {
+    const video = req.body;
+    console.log(video);
+    try {
+        let doc = await admin.firestore().collection("videos").add(video);
+    } catch (e) {
+        res.send("failed to create");
+    }
+});
+app.get("/v1/thumbnails", async (req, res) => {
     try {
         let videoDocList = await admin.firestore().collection("videos").listDocuments();
         let videoList = [];
         for (let i = 0; i < videoDocList.length; i++) {
-            videoList.push((await videoDocList[i].get()).data())
+            let res = {};
+            let docref = await videoDocList[i].get();
+            res = docref.data();
+            res.id = docref.id;
+            videoList.push(res);
         }
         res.send({
             videos: videoList
@@ -60,21 +86,30 @@ app.delete("/v1/video/:id", async(req, res) => {
         })
     }
 });
-app.get("/v1/video/:id", async(req, res) => {
-    const { id } = req.params;
-    if (id == undefined) {
-        res.send({
-            massage: "Please set the video id"
-        });
-        return;
-    }
-    let data = (await admin.firestore().collection("videos").doc(id).get()).data();
-    res.send({
-        data: data,
-    })
+app.get("/v1/videos", async (req, res) => {
+    try {
+        let videoDocList = await admin.firestore().collection("videos").listDocuments();
+        let videoList = [];
+        for (let i = 0; i < videoDocList.length; i++) {
+            let res = {};
+            let docref = await videoDocList[i].get();
+            res = docref.data();
+            res.id = docref.id;
+            //console.log(res);
 
-})
-app.put("/v1/video/:id", async(req, res) => {
+            videoList.push(res);
+        }
+        res.send({
+            videos: videoList
+        })
+    } catch (e) {
+        res.send({
+            videos: [],
+        })
+    }
+});
+
+app.put("/v1/video/:id", async (req, res) => {
     const { id } = req.params;
     if (id == undefined) {
         res.send({
@@ -94,23 +129,44 @@ app.put("/v1/video/:id", async(req, res) => {
             } catch (e) {
                 res.send({
                     message: "update unsuccessfully"
-                })
+                });
             }
-            return;
         }
+    }
+});
+
+app.delete("/v1/video/:id", async (req, res) => {
+    const { id } = req.params;
+    if (id == undefined) {
         res.send({
-            message: "id is not match"
+            message: "Please set the vid"
+        })
+        return;
+    } else {
+        let doc = await admin.firestore().collection("videos").doc(id).delete();
+        res.send({
+            message: id + " " + "deleted"
+        })
+    }
+
+})
+
+app.get("/v1/video/:id", async (req, res) => {
+    const { id } = req.query;
+    if (id == undefined) {
+        res.send({
+            massage: "Please set the video id"
         });
         return;
     }
+    let data = (await admin.firestore().collection("videos").doc(id).get()).data();
     res.send({
-        message: "Id does not exist"
-    });
-});
+        data: data,
+    })
 
-
+})
 //----------------------------------------------- For User
-app.post("/v1/User/Post", async(req, res) => {
+app.post("/v1/User/Post", async (req, res) => {
     const User = req.body;
     console.log(User);
     try {
@@ -125,7 +181,7 @@ app.post("/v1/User/Post", async(req, res) => {
         res.send("failed" + User.id)
     }
 })
-app.get("/v1/User", async(req, res) => { /// get all items
+app.get("/v1/User", async (req, res) => { /// get all items
     var ListOfUser = [];
     var ListOfUserRef = await admin.firestore().collection('User').listDocuments();
     for (const User of ListOfUserRef) {
@@ -134,7 +190,7 @@ app.get("/v1/User", async(req, res) => { /// get all items
     }
     res.send(ListOfUser);
 })
-app.put('/v1/User/Put', async(req, res) => {
+app.put('/v1/User/Put', async (req, res) => {
     const { id } = req.query;
     if (id == undefined) {
         res.send({
@@ -166,7 +222,7 @@ app.put('/v1/User/Put', async(req, res) => {
         status: " id not exist"
     });
 })
-app.delete('/v1/User/Delete', async(req, res) => {
+app.delete('/v1/User/Delete', async (req, res) => {
     let { id } = req.query;
     if (id == undefined) {
         res.send({
@@ -181,7 +237,7 @@ app.delete('/v1/User/Delete', async(req, res) => {
     }
 });
 //---------------------------------- For Comment
-app.post("/v1/Comment/Post", async(req, res) => {
+app.post("/v1/Comment/Post", async (req, res) => {
     const Comment = req.body;
     console.log(Comment);
     try {
@@ -204,7 +260,7 @@ app.post("/v1/Comment/Post", async(req, res) => {
         res.send("failed" + Comment.id)
     }
 })
-app.get("/v1/Comment", async(req, res) => { /// get all items
+app.get("/v1/Comment", async (req, res) => { /// get all items
     var ListOfCmt = [];
     var ListOfCmtRef = await admin.firestore().collection('Comment').listDocuments();
     for (const Comment of ListOfCmtRef) {
@@ -213,7 +269,7 @@ app.get("/v1/Comment", async(req, res) => { /// get all items
     }
     res.send(ListOfCmt);
 })
-app.delete('/v1/Comment/Delete', async(req, res) => {
+app.delete('/v1/Comment/Delete', async (req, res) => {
     let { id } = req.query;
     if (id == undefined) {
         res.send({
@@ -227,7 +283,7 @@ app.delete('/v1/Comment/Delete', async(req, res) => {
         })
     }
 });
-app.put('/v1/Comment/Put', async(req, res) => {
+app.put('/v1/Comment/Put', async (req, res) => {
     const { id } = req.query;
     if (id == undefined) {
         res.send({
@@ -260,6 +316,43 @@ app.put('/v1/Comment/Put', async(req, res) => {
     });
 });
 
-app.listen(port, '127.0.0.1', () => {
+// app.get('/v1/videodemo', async(req, res) => {
+//     let createVideoRef = (await firestore().collection("videos").add({})).id
+//     let createVideo = await firestore().collection("videos").doc(createVideoRef).set({
+//         "videourl":"dasdasdasd",
+//         "videoUUID": createVideoRef
+//     })
+//     res.send("OK")
+
+// });
+
+// app.post('/v1/addComment', async(req, res) => {
+//     // UUID VIdeo
+//     // FORM who
+//     const {videoUUID,from,commentContent} = req.body;
+//     let commentVideo = await firestore().collection("Comment").add({
+//         "videoUUID":videoUUID,
+//         "commentContent":commentContent,
+//         "from":from,
+//         "time":Date.now(),
+//     })
+//     res.send("OK")
+
+// });
+
+// app.post('/v1/commentofVideo', async(req, res) => {
+//         // UUID VIdeo
+//         const {videoUUID} = req.body;
+//         let loadCommentQuery = firestore().collection("Comment").where('videoUUID',"==",videoUUID);
+//         let commentData = (await loadCommentQuery.get()).docs;
+
+//            return a.get('time') - b.get('time')
+//         })
+//         res.send(commentData)
+
+//     });
+
+
+app.listen(port, () => {
     console.log("server is running")
 });

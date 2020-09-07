@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UploadService } from 'src/app/ui/service/upload.service';
 
 @Component({
   selector: 'app-uploader',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public upload:UploadService) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +23,8 @@ export class UploaderComponent implements OnInit {
   onDrop(files: FileList) {
     for (let i = 0; i < files.length; i++) {
       this.files.push(files.item(i));
-    }
+    };
+    this.upload.file=this.files[0];
   }
 
  
