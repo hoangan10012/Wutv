@@ -11,10 +11,12 @@
 </div> -->
 
 <div *ngIf="listvideo.length!=0">
-    <div *ngFor="let data of listvideo">
+    <div class="col-sm-3" *ngFor="let data of listvideo">
 
-        <video style="width: 200px; height: 300px;" controls>
+        <!-- <video style="width: 200px; height: 300px;" controls>
             <source [src]="data.downloadURL"> 
-        </video>
+        </video> -->
+        <app-video [data]="data"></app-video>
     </div>
+
 </div>

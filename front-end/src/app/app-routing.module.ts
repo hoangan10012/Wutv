@@ -13,7 +13,7 @@ import {UploadComponent} from '../app/upload/upload.component'
 const routes: Routes = [{ path: 'Login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
 { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
 { path: 'Watch-video', loadChildren: () => import('./watch-video/watch-video.module').then(m => m.WatchVideoModule) }
-,{path: 'upload', component: UploadComponent, children: [
+,{path: 'upload', component: UploadComponent, canActivate: [AuthGuard], children: [
     {path: 'uploader', component: UploaderComponent},
     {path: 'uploadtask', component:UploadTaskComponent},
     {path: 'upthumbnail', component: UpthumbnailComponent},

@@ -18,6 +18,7 @@ export class DataService {
       for (let i = 0; i < dataListRaw.length; i++) {
         videos.push(<data>dataListRaw[i]);
       }
+      console.log (videos);
       return videos;
     }));
 

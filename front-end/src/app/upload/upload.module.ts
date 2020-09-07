@@ -8,16 +8,23 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { UpthumbnailComponent } from './upthumbnail/upthumbnail.component';
 import { UpthumbnailTaskComponent } from './upthumbnail-task/upthumbnail-task.component';
 import {MatIconModule} from '@angular/material/icon';
-import { UploadFromComponent } from './upload-from/upload-from.component';
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [UploaderComponent, UploadTaskComponent, UpthumbnailComponent, UpthumbnailTaskComponent, UploadFromComponent],
+  declarations: [UploaderComponent, UploadTaskComponent, UpthumbnailComponent, UpthumbnailTaskComponent],
   imports: [
     CommonModule,
     UploadRoutingModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule
+    
   ], 
   exports: [
     UploaderComponent, 

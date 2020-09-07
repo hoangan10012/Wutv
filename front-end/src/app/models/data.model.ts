@@ -3,5 +3,6 @@ export interface data{
     src: string;
     tittle : string;
     desc: string;
+    thumbnail: string;
     
 }
