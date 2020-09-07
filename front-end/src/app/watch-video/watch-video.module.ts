@@ -12,7 +12,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms'
 import {MatInputModule} from '@angular/material/input'
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCardModule} from '@angular/material/card';
+import { MatchMedia } from '@angular/flex-layout/core/typings/match-media';
 @NgModule({
   declarations: [WatchVideoComponent, WatchComponent, WatchDetailsComponent],
   imports: [
@@ -24,7 +26,10 @@ import {MatInputModule} from '@angular/material/input'
     MatFormFieldModule,
     MatButtonModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+
   ]
 })
 export class WatchVideoModule { }

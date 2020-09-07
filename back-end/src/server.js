@@ -6,7 +6,8 @@ const bodyParser = require('body-parser');
 const ffmpeg = require('ffmpeg');
 
 const admin = require("firebase-admin");
-const serviceAccount = require("../key/key.json")
+const serviceAccount = require("../key/key.json");
+
 const cors = require('cors');
 const { firestore } = require('firebase-admin');
 
@@ -67,6 +68,21 @@ app.get("/v1/thumbnails", async (req, res) => {
     } catch (e) {
         res.send({
             videos: [],
+        })
+    }
+})
+
+app.delete("/v1/video/:id", async(req, res) => {
+    const { id } = req.params;
+    if (id == undefined) {
+        res.send({
+            message: "Please set the vid"
+        })
+        return;
+    } else {
+        let doc = await admin.firestore().collection("videos").doc(id).delete();
+        res.send({
+            message: id + " " + "deleted"
         })
     }
 });
@@ -152,6 +168,7 @@ app.get("/v1/video/:id", async (req, res) => {
 //----------------------------------------------- For User
 app.post("/v1/User/Post", async (req, res) => {
     const User = req.body;
+    console.log(User);
     try {
         let doc = await admin.firestore().collection("User").doc(User.id);
         if ((await doc.get()).exists) {
@@ -224,7 +241,21 @@ app.post("/v1/Comment/Post", async (req, res) => {
     const Comment = req.body;
     console.log(Comment);
     try {
-        await admin.firestore().collection("Comment").doc().set(Comment);
+        //set comment id to Video collection
+        let db = admin.firestore();
+        await db.collection("Comment").add({
+            uid: Comment.uid,
+            content: Comment.content.comment,
+        }).then(async data => {
+            let cid = data.id;
+            await db.collection("videos").doc(Comment.vid).update({
+                commentId: admin.firestore.FieldValue.arrayUnion(cid)
+            }).then(() => {
+                res.status(200).send("ok");
+            })
+        })
+
+        //add new comment with id exsit
     } catch (err) {
         res.send("failed" + Comment.id)
     }
@@ -325,6 +356,3 @@ app.put('/v1/Comment/Put', async (req, res) => {
 app.listen(port, () => {
     console.log("server is running")
 });
-
-
-

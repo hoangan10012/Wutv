@@ -10,11 +10,11 @@ export class HomeComponent implements OnInit {
 
   fakeData = [
     {
-      id: '1',
+      id: '7Oj7RnUMlzGHKi9RD4T1',
       title: 'Lorem',
       desc: ' The Shiba Inu is the smallest',
       src: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-      
+
     },
     {
       id: '2',
@@ -47,8 +47,8 @@ export class HomeComponent implements OnInit {
       src: "https://material.angular.io/assets/img/examples/shiba2.jpg"
     }
   ];
-  constructor() { 
- 
+  constructor() {
+
   }
 
   ngOnInit(): void {

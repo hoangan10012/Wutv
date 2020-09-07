@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
-import { Comments } from '../../ui/service/comments/comments';
+
 import * as firebase from 'firebase';
 import {
   AngularFireStorageReference,
@@ -18,20 +18,71 @@ import { AngularFireFunctions } from '@angular/fire/functions';
 })
 export class DataService {
 
-  constructor(private _afs: AngularFirestore,  private _storage: AngularFireStorage,private _afn: AngularFireFunctions) { }
-  addComment(comment: Comments) {
-    this._afs
-      .collection('comments')
-      .add(comment)
-      // tslint:disable-next-line:variable-name
-      .then(comment_add => {
-        console.log(comment_add.id);
-        this._afs
-          .collection('videos')
-          .doc(comment.vid)
-          .update({
-            cid: firebase.firestore.FieldValue.arrayUnion(comment_add.id)
-          });
+  constructor( // tslint:disable-next-line:variable-name
+    private _afs: AngularFirestore,
+    // tslint:disable-next-line:variable-name
+    private _storage: AngularFireStorage,
+    // tslint:disable-next-line:variable-name
+    private _afn: AngularFireFunctions) { }
+
+
+    addLike( vid, uid) {
+      this._afs
+      .collection('videos')
+      .doc(vid)
+      .update({
+        likes : firebase.firestore.FieldValue.arrayUnion(uid)
       });
-  }
+      this._afs
+      .collection('users')
+      .doc(uid)
+      .update({
+        likes: firebase.firestore.FieldValue.arrayUnion(vid)
+      });
+    }
+
+    addDislike( vid, uid) {
+      this._afs
+      .collection('videos')
+      .doc(vid)
+      .update({
+        dislikes : firebase.firestore.FieldValue.arrayUnion(uid)
+      });
+      this._afs
+      .collection('users')
+      .doc(uid)
+      .update({
+        dislikes : firebase.firestore.FieldValue.arrayUnion(vid)
+      });
+    }
+
+    removeLike(vid, uid) {
+      this._afs
+      .collection('videos')
+      .doc(vid)
+      .update({
+        likes : firebase.firestore.FieldValue.arrayRemove(uid)
+      });
+      this._afs
+      .collection('users')
+      .doc(uid)
+      .update({
+        likes : firebase.firestore.FieldValue.arrayRemove(vid)
+      });
+    }
+
+    removeDislike(vid, uid) {
+      this._afs
+      .collection('videos')
+      .doc(vid)
+      .update({
+        dislikes : firebase.firestore.FieldValue.arrayRemove(uid)
+      });
+      this._afs
+      .collection('users')
+      .doc(uid)
+      .update({
+        dislikes : firebase.firestore.FieldValue.arrayRemove(vid)
+      });
+    }
 }

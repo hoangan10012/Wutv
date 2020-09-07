@@ -1,12 +1,25 @@
 .mat-elevation-z6 {
     display: flex;
     justify-content: space-between;
-    background-color: #dfe49b;
-    border-bottom-style: solid;
-    border-color: #dfe49b;
-    position: relative;
-    z-index: 3;
-    opacity: 0.9;
+    // background-color: #90a4ae;
+    // background: #f12711;
+    background: #FDC830;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F37335, #FDC830);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F37335, #FDC830);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    // background: #f12711;
+    background: #FDC830;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F37335, #FDC830);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F37335, #FDC830);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    // position: fixed;
+    // z-index: 3;
+    // opacity: 0.9;
+    // width: 100%;
 }
 
 .example-full-width {
@@ -80,7 +93,13 @@ div .mat-form-field-infix {
 }
 
 input:-internal-autofill-selected {
-    background-color: #dfe49b !important;
+    // background-color: #90a4ae!important;
+    background: #FDC830;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F37335, #FDC830);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F37335, #FDC830);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .avatar {

@@ -12,7 +12,8 @@
     }
     
     .example-card {
-        box-shadow: 5px 5px 15px rgb(0, 0, 0);
+        // box-shadow: 5px 5px 15px rgb(0, 0, 0);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.20), 0 10px 10px rgba(0, 0, 0, 0.20);
         transition: 0.8s ease;
         cursor: pointer;
         // width: 250px;
@@ -20,5 +21,6 @@
     
     .example-card:hover {
         transform: scale(1.13);
-        box-shadow: 5px 5px 15px rgb(0, 0, 0);
+        // box-shadow: 5px 5px 15px rgb(0, 0, 0);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.20), 0 10px 10px rgba(0, 0, 0, 0.20);
     }

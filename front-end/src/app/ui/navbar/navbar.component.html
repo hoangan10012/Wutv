@@ -38,19 +38,22 @@
             <span>Live</span>
           </button>
         </mat-menu>
-
-        <button mat-raised-button style="background-color: white;" *ngIf=" auth.user ==null " (click)='this.auth.login()'>
+        <!-- <div *ngIf="!auth.logged"> -->
+        <button mat-raised-button style="background-color: white;" *ngIf=" auth.user == null " (click)='this.auth.login()'>
             <mat-icon aria-hidden="false" >account_circle</mat-icon>
             Sign in</button>
-        <button class="khung_avatar" *ngIf="auth.user!=null" mat-button [matMenuTriggerFor]="menu" style="background: none; outline: none;">
+        <!-- </div> -->
+        <!-- <div *ngIf="auth.logged"> -->
+        <button class="khung_avatar" *ngIf=" auth.user != null" mat-button [matMenuTriggerFor]="menu" style="background: none; outline: none;">
         <img *ngIf="auth.user!=null" class="avatar" [src]='auth.user.photoURL'></button>
+
         <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="this.auth.logout()" style="border: none; outline: none;">
             <mat-icon>login</mat-icon>
             <span>Logout</span>
             </button>
         </mat-menu>
-
+        <!-- </div> -->
     </div>
 
 </mat-toolbar>
