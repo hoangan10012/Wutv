@@ -1,98 +1,117 @@
-<div class="video">
-    <app-watch-details></app-watch-details>
+<div *ngIf="!this.data_have">
+    <mat-spinner></mat-spinner>
 </div>
+<div *ngIf="this.data_have">
+    <div class="video">
+        <app-watch-details [src]="src"></app-watch-details>
+    </div>
 
 
-<div class="main">
-    <div>
-        <div class="main-title">
-            <mat-grid-list class="title" cols="10">
-                <mat-grid-tile rowspan="1" colspan="8">
-                    <div class="tiltle-div">
-                        <h2>
-                            <Title>Title</Title>
-                        </h2>
+    <div class="main">
+        <div>
+            <div class="main-title">
+                <mat-grid-list class="title" cols="10">
+                    <mat-grid-tile rowspan="1" colspan="8">
+                        <div class="tiltle-div">
+                            <h2>
+                                <Title>Title</Title>
+                            </h2>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="2">
+                        <div class="div-view">
+                            <h4>
+                                View
+                            </h4>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+            <mat-grid-list cols="10">
+                <mat-grid-tile rowspan="1" colspan="1">
+                    <div class="owner-video-div">
+
                     </div>
                 </mat-grid-tile>
-                <mat-grid-tile colspan="2">
-                    <div class="div-view">
-                        <h4>
-                            View
-                        </h4>
+                <mat-grid-tile rowspan="1" colspan="5">
+                    <div class="owner-video-name">
+                        <h3>ower name</h3>
                     </div>
                 </mat-grid-tile>
-            </mat-grid-list>
-        </div>
-        <mat-grid-list cols="10">
-            <mat-grid-tile rowspan="1" colspan="1">
-                <div class="owner-video-div">
-
-                </div>
-            </mat-grid-tile>
-            <mat-grid-tile rowspan="1" colspan="5">
-                <div class="owner-video-name">
-                    <h3>ower name</h3>
-                </div>
-            </mat-grid-tile>
-            <mat-grid-tile rowspan="1" colspan="2">
-                <div class="div-like-dislike">
-                    <mat-grid-list cols="2" colWidth="50%" rowHeight="100%">
-                        <mat-grid-tile colspan="1">
-                            <button class="button-like-dislike" mat-button>
+                <mat-grid-tile rowspan="1" colspan="2">
+                    <div class="div-like-dislike">
+                        <mat-grid-list cols="2" colWidth="50%" rowHeight="100%">
+                            <mat-grid-tile colspan="1">
+                                <button class="button-like-dislike" (click)="onclick_like()" color="{{ button_like }}" mat-button>
                 <mat-icon>thumb_up</mat-icon>
                 <p>like</p>
               </button>
-                        </mat-grid-tile>
-                        <mat-grid-tile colspan="1">
-                            <button class="button-like-dislike" mat-button>
+                            </mat-grid-tile>
+                            <mat-grid-tile colspan="1">
+                                <button class="button-like-dislike" (click)="onclick_dislike()" color="{{ button_dislike }}" mat-button>
                 <mat-icon>thumb_down</mat-icon>
                 <p>dislike</p>
               </button>
-                        </mat-grid-tile>
-                    </mat-grid-list>
-                </div>
-            </mat-grid-tile>
-            <mat-grid-tile rowspan="1" colspan="1">
-                <button style="background-color: #dfe49b; color: black;" mat-raised-button color="primary">Share</button>
-            </mat-grid-tile>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile rowspan="1" colspan="1">
+                    <button style="background-color: #F37335; color: black; outline: none;" mat-raised-button color="primary">Share</button>
+                </mat-grid-tile>
 
-            <mat-grid-tile rowspan="1" colspan="1">
-                <button mat-raised-button color="warn">Report</button>
-            </mat-grid-tile>
+                <mat-grid-tile rowspan="1" colspan="1">
+                    <button mat-raised-button color="warn">Report</button>
+                </mat-grid-tile>
 
-            <!-- <mat-grid-tile rowspan='2' colspan=10>
+                <!-- <mat-grid-tile rowspan='2' colspan=10>
                   <p class="des">{{description}}
                   </p>
               </mat-grid-tile> -->
-        </mat-grid-list>
-    </div>
-    <p> description </p>
-    <div class="div-view-more">
-        <p [className]="'view-more'">title_view </p>
-    </div>
-    <div class="comment-main">
-        <div class="comment-total">
-            <p> Comment</p>
+            </mat-grid-list>
         </div>
-        <div class="comment-input">
-            <mat-form-field class="comment-form-field">
-                <!-- <img src="https://lh3.googleusercontent.com/-YCOk87TeQlc/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfVLz0rqXokP9-NeqnO_6ThX5xfRQ/photo.jpg"> -->
-                <input matInput placeholder="Add Your Comment" [(ngModel)]="this.content">
-
-
-            </mat-form-field>
-            <div class="comment-button-cancel-accept">
-                <button mat-raised-button style="margin-right: 20px; background-color: #f44336; color: white;">Delete
+        <p> description </p>
+        <div class="div-view-more">
+            <p [className]="'view-more'">title_view </p>
+        </div>
+        <div class="comment-main">
+            <div class="comment-total">
+                <p> Comment</p>
+            </div>
+            <div class="comment-input">
+                <mat-form-field class="comment-form-field">
+                    <!-- <img src="https://lh3.googleusercontent.com/-YCOk87TeQlc/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfVLz0rqXokP9-NeqnO_6ThX5xfRQ/photo.jpg"> -->
+                    <input matInput placeholder="Add Your Comment" [(ngModel)]="this.content">
+                </mat-form-field>
+                <div class="comment-button-cancel-accept">
+                    <button mat-raised-button style="margin-right: 20px; background-color: #f44336; color: white;">Cancel
         </button>
-                <button style="background-color: #dfe49b; color: black;" mat-raised-button color="primary">
+                    <button style="background-color: #4fc2f7; color: black;" mat-raised-button color="primary" (click)="send(content)">
           Accept
         </button>
-                <!-- <button style="background-color: #dfe49b; color: black;" mat-raised-button color="primary" (click)="listen(content)">
-          Show all Comment
-        </button> -->
-                <p>{{getcomment['content']}}</p>
+                    <!-- <div *ngFor="let content of getcomment">
+                        <p>{{content.content.Comment}}</p>
+                    </div> -->
+                </div>
             </div>
-        </div>
+            <div *ngIf="this.getcomment">
+                <mat-card *ngFor="let content of getcomment" class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="avatar">
+                            <img [src]="content.photoURL" alt="" style="width: 30px; height: 30px; border-radius: 50%;">
+                        </div>
+                        <mat-card-title>{{content.name}}</mat-card-title>
+                    </mat-card-header>
 
+                    <mat-card-content>
+                        <p>
+                            {{content.content}}
+                        </p>
+                    </mat-card-content>
+
+                </mat-card>
+            </div>
+
+        </div>
     </div>
 </div>

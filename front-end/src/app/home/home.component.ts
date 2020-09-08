@@ -9,7 +9,9 @@ import {DataService} from '../ui/service/data.service';
 })
 export class HomeComponent implements OnInit {
 
+
   listvideo =[]
+
 
   constructor( private dataservice : DataService) {
     this.getvideo();

@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, EventEmitter, Output,NgModule } from '@angular/core';
-import { FormControl,FormGroup, Validators } from "@angular/forms";
 
+import { Component, OnInit } from '@angular/core';
+import { UploadService } from 'src/app/ui/service/upload.service';
 
 
 @Component({
@@ -9,21 +9,13 @@ import { FormControl,FormGroup, Validators } from "@angular/forms";
   styleUrls: ['./uploader.component.scss']
 })
 export class UploaderComponent implements OnInit {
-  constructor() { }
 
-  uploadform = new FormGroup({
-    tittle: new FormControl(''),
-    desc: new FormControl(''),
-    thumbnail:new FormControl('')
-  })
-  ngOnInit() {}
-  titleValid = new FormControl("", [
-    Validators.required,
-    Validators.minLength(5)
-  ]);
-  onChange() {
-    // this.form.emit(this.titleValid.valid);
-  }
+  constructor(public upload:UploadService) { }
+
+
+ 
+  ngOnInit():void {}
+
   isHovering: boolean;
 
   files: Array<File> = [];
@@ -35,7 +27,8 @@ export class UploaderComponent implements OnInit {
   onDrop(files: FileList) {
     for (let i = 0; i < files.length; i++) {
       this.files.push(files.item(i));
-    }
+    };
+    this.upload.file=this.files[0];
   }
 
  
