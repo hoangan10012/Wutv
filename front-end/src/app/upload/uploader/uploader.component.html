@@ -1,3 +1,38 @@
+<!-- <form class="container" (change)="onChange()">
+    <div class="body">
+        <div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
+            <div class="file-label">
+                <label class="file-label">
+             <input class="file-input"type="file"(change)="onDrop($event.target.files)">
+         </label>
+            </div>
+        </div>
+ <h3>Uploads</h3> -->
+<!-- <div *ngFor="let file of files">
+    <app-upload-task [file]="file"></app-upload-task>
+</div>
+</div>  -->
+
+
+
+<!-- <div>
+    <form action="" [formGroup]="uploadform">
+        <input type="text" name="" id="" formControlName="tittle">
+        <input type="text" formControlName="desc">
+    </form>
+    <mat-form-field id="title" appearance="standard">
+        <mat-label>Title</mat-label>
+        <input matInput #title required minlength="5" name="title" [(ngModel)]="videoData.title" (keyup.enter)="blur(title)" [formControl]="titleValid" />
+        <mat-error *ngIf="titleValid.invalid">{{ getErrorMessage() }}</mat-error>
+
+    </mat-form-field>
+</div>
+<mat-form-field appearance="standard">
+    <mat-label>Description</mat-label>
+    <textarea matInput name="description" [(ngModel)]="videoData.description" mat-autosize="true" matAutosizeMaxRows="20" matAutosizeMinRows="10"></textarea>
+</mat-form-field>
+</form> -->
+
 <div class="body">
     <div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
 
@@ -5,8 +40,8 @@
         <p>Drag and Drop a File</p>
         <div class="file-label">
             <label for="input-file-video" class="file-label">choose your file</label>
-             <input id="input-file-video" style="display: none;" class="file-input"type="file" accept="video/*" (change)="onDrop($event.target.files)">
-         
+            <input id="input-file-video" style="display: none;" class="file-input" type="file" accept="video/*" (change)="onDrop($event.target.files)">
+
         </div>
     </div>
     <div *ngFor="let file of files">

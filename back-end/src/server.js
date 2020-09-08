@@ -9,7 +9,9 @@ const admin = require("firebase-admin");
 const serviceAccount = require("../key/key.json");
 
 const cors = require('cors');
-const { firestore } = require('firebase-admin');
+const {
+    firestore
+} = require('firebase-admin');
 
 
 app.use(cors());
@@ -73,8 +75,10 @@ app.get("/v1/thumbnails", async (req, res) => {
     }
 })
 
-app.delete("/v1/video/:id", async(req, res) => {
-    const { id } = req.params;
+app.delete("/v1/video/:id", async (req, res) => {
+    const {
+        id
+    } = req.params;
     if (id == undefined) {
         res.send({
             message: "Please set the vid"
@@ -111,7 +115,7 @@ app.get("/v1/videos", async (req, res) => {
 });
 
 app.put("/v1/video/:id", async (req, res) => {
-    const { id } = req.params;
+    const {id} = req.params;
     if (id == undefined) {
         res.send({
             massage: "Please set the vid"
@@ -135,7 +139,9 @@ app.put("/v1/video/:id", async (req, res) => {
 });
 
 app.delete("/v1/video/:id", async (req, res) => {
-    const { id } = req.params;
+    const {
+        id
+    } = req.params;
     if (id == undefined) {
         res.send({
             message: "Please set the vid"
@@ -191,7 +197,9 @@ app.get("/v1/User", async (req, res) => { /// get all items
     res.send(ListOfUser);
 })
 app.put('/v1/User/Put', async (req, res) => {
-    const { id } = req.query;
+    const {
+        id
+    } = req.query;
     if (id == undefined) {
         res.send({
             Status: " Set the item id"
@@ -223,7 +231,9 @@ app.put('/v1/User/Put', async (req, res) => {
     });
 })
 app.delete('/v1/User/Delete', async (req, res) => {
-    let { id } = req.query;
+    let {
+        id
+    } = req.query;
     if (id == undefined) {
         res.send({
             "Status": "Please choose another id",
@@ -270,7 +280,9 @@ app.get("/v1/Comment", async (req, res) => { /// get all items
     res.send(ListOfCmt);
 })
 app.delete('/v1/Comment/Delete', async (req, res) => {
-    let { id } = req.query;
+    let {
+        id
+    } = req.query;
     if (id == undefined) {
         res.send({
             "Status": "Please choose another id",
@@ -284,7 +296,9 @@ app.delete('/v1/Comment/Delete', async (req, res) => {
     }
 });
 app.put('/v1/Comment/Put', async (req, res) => {
-    const { id } = req.query;
+    const {
+        id
+    } = req.query;
     if (id == undefined) {
         res.send({
             Status: " Set the item id"

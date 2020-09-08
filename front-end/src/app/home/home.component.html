@@ -1,11 +1,22 @@
 <!-- <div class="row" gutterSize="30">
     <div class="col-sm-4" *ngFor="let d of fakeData">
         <app-video [data]="d"></app-video>
-    </div>
+    </div>\9
 </div> -->
 <!-- <button (click)='this.auth.login()'>Click</button> -->
-<div class="row">
-    <div class="col-md-3" *ngFor="let d of fakeData">
-        <app-video [data]="d"></app-video>
+<!-- <div class="row">
+    <div class="col-md-3" *ngFor="let d of video">
+        <app-video [video]="d"></app-video>
     </div>
+</div> -->
+
+<div class="row" *ngIf="listvideo.length!=0">
+    <div class="col-sm-3" *ngFor="let data of listvideo">
+
+        <!-- <video style="width: 200px; height: 300px;" controls>
+            <source [src]="data.downloadURL"> 
+        </video> -->
+        <app-video [data]="data"></app-video>
+    </div>
+
 </div>
