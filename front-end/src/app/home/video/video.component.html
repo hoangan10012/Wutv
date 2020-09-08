@@ -1,5 +1,5 @@
 <!-- <mat-card [routerLink]="['/watch']" class="example-card" style="margin-top: 15%; margin-left: 20%;"> -->
-<mat-card (click)="onSelect(data)" class="example-card" style="margin-top: 15%; margin-left: 20%;">
+<mat-card (click)="onSelect(data)" class="example-card" style="margin-top: 15%;padding: 0;">
     <!-- <div>
         <img mat-card-image class="img-card" src={{data.src}}>
 
@@ -16,7 +16,8 @@
             </p>
         </mat-card-content>
     </div> -->
-    <img mat-card-image class="img-card" src={{data.thumbnailURL}}>
+    <img src={{data.thumbnailURL}}>
+    <mat-card-title>{{data.tittle}}</mat-card-title>
     <!-- <mat-card-actions>
         <button mat-button>LIKE</button> *
         <button mat-button>SHARE</button>
