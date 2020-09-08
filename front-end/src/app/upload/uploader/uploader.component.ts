@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output,NgModule } from '@angular/core';
 import { FormControl,FormGroup, Validators } from "@angular/forms";
-
+import { UploadService } from 'src/app/ui/service/upload.service';
 
 @Component({
   selector: 'app-uploader',
@@ -10,8 +10,8 @@ import { FormControl,FormGroup, Validators } from "@angular/forms";
 export class UploaderComponent implements OnInit {
 
  
-  constructor() { }
-
+  constructor(public upload:UploadService) { }
+  files: Array<File> = [];
   uploadform = new FormGroup({
     tittle: new FormControl(''),
     desc: new FormControl(''),
@@ -24,6 +24,17 @@ export class UploaderComponent implements OnInit {
   ]);
   onChange() {
     // this.form.emit(this.titleValid.valid);
+  }
+  isHovering: boolean;
+  toggleHover(event: boolean) {
+    this.isHovering = event;
+  }
+
+  onDrop(files: FileList) {
+    for (let i = 0; i < files.length; i++) {
+      this.files.push(files.item(i));
+      this.upload.file=this.files[0];
+    }
   }
 
  
