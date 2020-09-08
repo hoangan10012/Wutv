@@ -14,6 +14,7 @@ export class VideoComponent implements OnInit {
   constructor(private router: Router, public boxChatService: BoxChatService) { }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
   onSelect (data){
     // this.boxChatService.vid = data.id;
