@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@600&display=swap');
 // .example-card {
 //     // --auto-grid-min-size: 16rem;
 //     display: grid;
@@ -28,8 +28,8 @@
 }
 
 mat-card-title {
-    font-size: 15px;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-family: 'Cabin', sans-serif;
     border: 10px solid white;
 }
 
@@ -38,4 +38,10 @@ img {
     height: 150px;
     // object-fit: cover;
     padding-bottom: 10px;
+}
+
+mat-card-content {
+    font-size: 17px;
+    font-family: 'Cabin', sans-serif;
+    // border: 10px solid white;
 }
