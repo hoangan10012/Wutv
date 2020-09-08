@@ -1,5 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
 import { UploadService } from 'src/app/ui/service/upload.service';
+
 
 @Component({
   selector: 'app-uploader',
@@ -10,8 +12,10 @@ export class UploaderComponent implements OnInit {
 
   constructor(public upload:UploadService) { }
 
-  ngOnInit(): void {
-  }
+
+ 
+  ngOnInit():void {}
+
   isHovering: boolean;
 
   files: Array<File> = [];

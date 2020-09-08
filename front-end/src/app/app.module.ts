@@ -21,11 +21,13 @@ import { UploadModule } from './upload/upload.module';
 import { UploadComponent } from './upload/upload.component';
 import { from } from 'rxjs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     DropzoneDirective,
-    UploadComponent
+    UploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     UploadModule,
     MatSnackBarModule,
     HttpClientModule,
+ 
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]

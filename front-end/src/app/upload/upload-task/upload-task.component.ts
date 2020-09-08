@@ -30,12 +30,11 @@ export class UploadTaskComponent implements OnInit {
      public upload:UploadService
     ) { }
 
-  // tslint:disable-next-line:typedef
+  
   ngOnInit() {
    
   }
-  // tslint:disable-next-line:typedef
-  // tslint:disable-next-line:typedef
+
   isActive(snapshot) {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }

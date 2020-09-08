@@ -1,22 +1,14 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase} from '@angular/fire/database';
-
-import * as firebase from 'firebase';
-import {
-  AngularFireStorageReference,
-  AngularFireUploadTask,
-  AngularFireStorage
-} from '@angular/fire/storage';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument
-} from '@angular/fire/firestore';
-import { AngularFireFunctions } from '@angular/fire/functions';
-
+import { AngularFirestore } from '@angular/fire/firestore';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
+import { data } from '../../models/data.model';
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
 
   constructor( // tslint:disable-next-line:variable-name
     private _afs: AngularFirestore,
@@ -24,6 +16,7 @@ export class DataService {
     private _storage: AngularFireStorage,
     // tslint:disable-next-line:variable-name
     private _afn: AngularFireFunctions) { }
+
 
 
     addLike( vid, uid) {
