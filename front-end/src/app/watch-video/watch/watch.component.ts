@@ -22,7 +22,7 @@ interface Comment {
 export class WatchComponent implements OnInit {
   data_have = false;
   content: string;
-  getcomment: Array<Comment> = Array<Comment>();
+  getcomment: Array<Comment> = new Array<Comment>();
   vid: string;
   src: string;
   button_like = '';
@@ -124,42 +124,44 @@ export class WatchComponent implements OnInit {
   }
 
 
-    ngOnInit() {
-      this.http.get(environment.endpoint + '/v1/video/' + this.vid).toPromise().then(data => {
-        console.log(data)
-        let id = parseInt(this.route.snapshot.paramMap.get('id'))
-        this.src = data['data']['downloadURL'];
-        console.log(this.src)
-        this.vidName = data['path'];
-        this.data_have = true;
+  ngOnInit() {
+    console.log(this.vid);
+    this.http.get(environment.endpoint + '/v1/video/' + this.vid).toPromise().then(data => {
+      console.log(data)
+      let id = parseInt(this.route.snapshot.paramMap.get('id'))
+      this.src = data['data']['downloadURL'];
+      console.log(this.src)
+      this.vidName = data['path'];
+      this.data_have = true;
+      this.fb.collection('videos').doc(this.vid).get().subscribe(data => {
+        this.view_total += data.data()['views'];
+        this.fb
+          .collection('videos')
+          .doc(this.vid)
+          .update({
+            views: this.view_total + 1
+          })
+          .then(() => {
+            this.fb
+              .collection('videos')
+              .doc(this.vid)
+              .snapshotChanges()
+              .subscribe(data => {
+                this.videoinfo = data.payload.data();
+                //console.log(this.videoinfo);
+                this.src = this.videoinfo['url'];
+                //console.log(this.src);
+                this.like_count = this.videoinfo['likes'].length;
+                this.dislike_count = this.videoinfo['dislikes'].length;
+                this.view_total = this.videoinfo['views'];
+              })
+          })
         this.listen();
-        this.fb.collection('videos').doc(this.vid).get().subscribe(data => {
-          this.view_total += data.data()['views'];
-          this.fb
-            .collection('videos')
-            .doc(this.vid)
-            .update({
-              views: this.view_total + 1
-            })
-            .then(() => {
-              this.fb
-                .collection('videos')
-                .doc(this.vid)
-                .snapshotChanges()
-                .subscribe(data => {
-                  this.videoinfo = data.payload.data();
-                  //console.log(this.videoinfo);
-                  this.src = this.videoinfo['url'];
-                  //console.log(this.src);
-                  this.like_count = this.videoinfo['likes'].length;
-                  this.dislike_count = this.videoinfo['dislikes'].length;
-                  this.view_total = this.videoinfo['views'];
-            })
+
       })
-  })
-      })
-    }
+    })
   }
+}
 
 
 
