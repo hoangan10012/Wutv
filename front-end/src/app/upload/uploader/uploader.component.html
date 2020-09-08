@@ -1,4 +1,4 @@
-<form class="container" (change)="onChange()">
+<!-- <form class="container" (change)="onChange()">
     <div class="body">
         <div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
             <div class="file-label">
@@ -7,31 +7,28 @@
          </label>
             </div>
         </div>
-
-        <!-- <h3>Uploads</h3> -->
-        <div *ngFor="let file of files">
-            <app-upload-task [file]="file"></app-upload-task>
-        </div>
-    </div>
-
+ <h3>Uploads</h3> -->
+<!-- <div *ngFor="let file of files">
+    <app-upload-task [file]="file"></app-upload-task>
+</div>
+</div>  -->
 
 
-    <div>
-        <form action="" [formGroup]="uploadform">
-            <input type="text" name="" id="" formControlName="tittle">
-            <input type="text" formControlName="desc">
-        </form>
-        <mat-form-field id="title" appearance="standard">
-            <mat-label>Title</mat-label>
-            <input matInput #title required minlength="5" name="title" [(ngModel)]="videoData.title" (keyup.enter)="blur(title)" [formControl]="titleValid" />
-            <mat-error *ngIf="titleValid.invalid">{{ getErrorMessage() }}</mat-error>
 
-        </mat-form-field>
-    </div>
+<!-- <div>
+    <form action="" [formGroup]="uploadform">
+        <input type="text" name="" id="" formControlName="tittle">
+        <input type="text" formControlName="desc">
+    </form>
+    <mat-form-field id="title" appearance="standard">
+        <mat-label>Title</mat-label>
+        <input matInput #title required minlength="5" name="title" [(ngModel)]="videoData.title" (keyup.enter)="blur(title)" [formControl]="titleValid" />
+        <mat-error *ngIf="titleValid.invalid">{{ getErrorMessage() }}</mat-error>
 
-
-    <mat-form-field appearance="standard">
-        <mat-label>Description</mat-label>
-        <textarea matInput name="description" [(ngModel)]="videoData.description" mat-autosize="true" matAutosizeMaxRows="20" matAutosizeMinRows="10"></textarea>
     </mat-form-field>
-</form>
+</div>
+<mat-form-field appearance="standard">
+    <mat-label>Description</mat-label>
+    <textarea matInput name="description" [(ngModel)]="videoData.description" mat-autosize="true" matAutosizeMaxRows="20" matAutosizeMinRows="10"></textarea>
+</mat-form-field>
+</form> -->
