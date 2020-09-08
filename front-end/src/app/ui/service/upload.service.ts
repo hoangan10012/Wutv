@@ -33,13 +33,10 @@ export class UploadService {
     const path = `test/${Date.now()}_${this.file.name}`;
     // Reference to storage bucket
     const ref = this.storage.ref(path);
-
     // The main task
     this.task = this.storage.upload(path, this.file);
-
     // Progress monitoring
     this.percentage = this.task.percentageChanges();
-
     // this.task.percentageChanges().subscribe(async value=> {
     //   if (value == 100) {
     //     this.vidURL = await ref.getDownloadURL().toPromise();
@@ -47,7 +44,6 @@ export class UploadService {
 
     //   }
     // })
-
     this.task.snapshotChanges().toPromise().then(async () => {
       this.vidURL = await ref.getDownloadURL().toPromise();
       console.log(this.vidURL);
@@ -63,7 +59,6 @@ export class UploadService {
         console.log(value)
       })
     })
-
     // this.snapshot = this.task.snapshotChanges().pipe(
     //   tap(console.log),
     //   // The file's download URL
@@ -78,17 +73,12 @@ export class UploadService {
     //   }),
     // );
 
-
-    // users
     //The storage path
     const pathThumnail = `test/${Date.now()}_${this.fileThumnail.name}`;
-
     // Reference to storage bucket
     const refThumbnail = this.storage.ref(pathThumnail);
-
     // The main task
     this.taskThumnail = this.storage.upload(pathThumnail, this.fileThumnail);
-
     // Progress monitoring
     this.percentageThumnail = this.taskThumnail.percentageChanges();
     this.taskThumnail.percentageChanges().subscribe(async value => {
