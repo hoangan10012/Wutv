@@ -157,7 +157,7 @@ app.delete("/v1/video/:id", async (req, res) => {
 })
 
 app.get("/v1/video/:id", async (req, res) => {
-    const {id} = req.query;
+    const {id} = req.params;
     if (id == undefined) {
         res.send({
             massage: "Please set the video id"
