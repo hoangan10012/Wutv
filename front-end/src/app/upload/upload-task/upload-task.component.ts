@@ -6,6 +6,7 @@ import { finalize, tap } from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http'
 import {environment} from '../../../environments/environment'
 import { AuthenticationService } from 'src/app/ui/service/auth.service';
+import {UploadService} from '../../ui/service/upload.service'
 
 @Component({
   selector: 'app-upload-task',
@@ -16,7 +17,9 @@ export class UploadTaskComponent implements OnInit {
   @Input() file: File;
 
   task: AngularFireUploadTask;
-
+  tittle:string;
+  desc:string;
+  vid:string;
   percentage: Observable<number>;
   snapshot: Observable<any>;
   downloadURL: string;
@@ -24,40 +27,14 @@ export class UploadTaskComponent implements OnInit {
      private db: AngularFirestore,
      private auth: AuthenticationService,
      private httpClient:HttpClient,
+     public upload:UploadService
     ) { }
 
-  // tslint:disable-next-line:typedef
+  
   ngOnInit() {
-    this.startUpload();
+   
   }
 
-  // tslint:disable-next-line:typedef
-  startUpload() {
-    // users
-    // The storage path
-    const path = `test/${Date.now()}_${this.file.name}`;
-
-    // Reference to storage bucket
-    const ref = this.storage.ref(path);
-
-    // The main task
-    this.task = this.storage.upload(path, this.file);
-
-    // Progress monitoring
-    this.percentage = this.task.percentageChanges();
-
-    this.snapshot = this.task.snapshotChanges().pipe(
-      tap(console.log),
-      // The file's download URL
-      finalize(async  () => {
-        this.downloadURL = await ref.getDownloadURL().toPromise();
-        // this.db.collection('videos').add({ downloadURL: this.downloadURL, path });
-        await this.httpClient.post(environment.endpoint+"/v1/video",{id: this.auth.user.uid ,content: {downloadURL:this.downloadURL,path}}).toPromise();
-      }),
-    );
-  }
-
-  // tslint:disable-next-line:typedef
   isActive(snapshot) {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }

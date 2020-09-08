@@ -32,3 +32,19 @@
     <textarea matInput name="description" [(ngModel)]="videoData.description" mat-autosize="true" matAutosizeMaxRows="20" matAutosizeMinRows="10"></textarea>
 </mat-form-field>
 </form> -->
+
+<div class="body">
+    <div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
+
+        <h3>AngularFire Drop Zone</h3>
+        <p>Drag and Drop a File</p>
+        <div class="file-label">
+            <label for="input-file-video" class="file-label">choose your file</label>
+            <input id="input-file-video" style="display: none;" class="file-input" type="file" accept="video/*" (change)="onDrop($event.target.files)">
+
+        </div>
+    </div>
+    <div *ngFor="let file of files">
+        <app-upload-task [file]="file"></app-upload-task>
+    </div>
+</div>

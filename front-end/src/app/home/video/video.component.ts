@@ -16,7 +16,7 @@ export class VideoComponent implements OnInit {
   ngOnInit(): void {
   }
   onSelect (data){
-    this.boxChatService.vid = data.id;
+    // this.boxChatService.vid = data.id;
     this.router.navigate(['/watch', data.id]);
   }
 
