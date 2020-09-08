@@ -32,10 +32,10 @@ app.post("/v1/video", async (req, res) => {
             "commentId": video.commentId,
             "likes": video.likes,
             "dislikes": video.dislikes,
-            "views": video.views,  
+            "views": video.views,
             "tittle": video.tittle,
-            
-        }).then(value =>{
+
+        }).then(value => {
             console.log(value.id)
             res.send(value.id);
         });
@@ -115,7 +115,9 @@ app.get("/v1/videos", async (req, res) => {
 });
 
 app.put("/v1/video/:id", async (req, res) => {
-    const {id} = req.params;
+    const {
+        id
+    } = req.params;
     if (id == undefined) {
         res.send({
             massage: "Please set the vid"
@@ -123,18 +125,18 @@ app.put("/v1/video/:id", async (req, res) => {
         return;
     }
     let doc = admin.firestore().collection("videos").doc(id);
-    if ((await doc.get()).exists) { 
-            try {
-                await doc.update(req.body);
-                res.send({
-                    massage: "Update Successfully"
-                })
-                return;
-            } catch (e) {
-                res.send({
-                    message: "update unsuccessfully"
-                });
-            }
+    if ((await doc.get()).exists) {
+        try {
+            await doc.update(req.body);
+            res.send({
+                massage: "Update Successfully"
+            })
+            return;
+        } catch (e) {
+            res.send({
+                message: "update unsuccessfully"
+            });
+        }
     }
 });
 
@@ -157,7 +159,9 @@ app.delete("/v1/video/:id", async (req, res) => {
 })
 
 app.get("/v1/video/:id", async (req, res) => {
-    const {id} = req.query;
+    const {
+        id
+    } = req.params;
     if (id == undefined) {
         res.send({
             massage: "Please set the video id"
