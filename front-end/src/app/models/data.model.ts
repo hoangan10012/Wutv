@@ -4,5 +4,6 @@ export interface data{
     tittle : string;
     desc: string;
     thumbnail: string;
+    views: number;
     
 }
