@@ -3,18 +3,18 @@
     justify-content: space-between;
     // // background-color: #90a4ae;
     // // background: #f12711;
-    // background: #ff7e5f;
-    // /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to right, #feb47b, #ff7e5f);
-    // /* Chrome 10-25, Safari 5.1-6 */
-    // background: linear-gradient(to right, #feb47b, #ff7e5f);
-    // /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    // background: #ff7e5f;
-    // /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to right, #feb47b, #ff7e5f);
-    // /* Chrome 10-25, Safari 5.1-6 */
-    // background: linear-gradient(to right, #feb47b, #ff7e5f);
-    // /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #FDC830;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F37335, #FDC830);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F37335, #FDC830);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #FDC830;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F37335, #FDC830);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F37335, #FDC830);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     // position: fixed;
     // z-index: 3;
     // opacity: 0.9;
@@ -91,15 +91,22 @@ div .mat-form-field-infix {
     }
 }
 
-// input:-internal-autofill-selected {
-//     // background-color: #90a4ae!important;
-//     // background: #ff7e5f;
-//     // /* fallback for old browsers */
-//     // background: -webkit-linear-gradient(to right, #feb47b, #ff7e5f);
-//     // /* Chrome 10-25, Safari 5.1-6 */
-//     // background: linear-gradient(to right, #feb47b, #ff7e5f);
-//     // /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-// }
+input:-internal-autofill-selected {
+    //     // background-color: #90a4ae!important;
+    background: #FDC830;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F37335, #FDC830);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F37335, #FDC830);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #FDC830;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F37335, #FDC830);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F37335, #FDC830);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 .avatar {
     width: 40px;
     height: 40px;
