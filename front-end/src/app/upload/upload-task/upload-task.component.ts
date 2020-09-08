@@ -29,12 +29,8 @@ export class UploadTaskComponent implements OnInit {
      private httpClient:HttpClient,
      public upload:UploadService
     ) { }
-
-  
   ngOnInit() {
-   
   }
-
   isActive(snapshot) {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }
