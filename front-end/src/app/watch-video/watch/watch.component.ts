@@ -30,7 +30,7 @@ export class WatchComponent implements OnInit {
   vidName: string;
   public videoid;
 
-  constructor(private route: ActivatedRoute,public current_user: AuthenticationService, private like_dislike_service: LikeDislikeService, private BoxChatService: BoxChatService, private http: HttpClient, private fb: AngularFirestore) {
+  constructor(private route: ActivatedRoute, public current_user: AuthenticationService, private like_dislike_service: LikeDislikeService, private BoxChatService: BoxChatService, private http: HttpClient, private fb: AngularFirestore) {
     this.vid = this.route.snapshot.params.id;
   }
 
@@ -122,6 +122,7 @@ export class WatchComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.vid);
     this.http.get(environment.endpoint + '/v1/video/' + this.vid).toPromise().then(data => {
       console.log(data)
       let id = parseInt(this.route.snapshot.paramMap.get('id'))

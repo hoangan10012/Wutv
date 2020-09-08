@@ -9,7 +9,9 @@ const admin = require("firebase-admin");
 const serviceAccount = require("../key/key.json");
 
 const cors = require('cors');
-const { firestore } = require('firebase-admin');
+const {
+    firestore
+} = require('firebase-admin');
 
 
 app.use(cors());
@@ -19,7 +21,7 @@ admin.initializeApp({
     databaseURL: "https://wutv-red.firebaseio.com"
 });
 admin.storage()
-app.post("/v1/video", async(req, res) => {
+app.post("/v1/video", async (req, res) => {
     const video = req.body;
     console.log(video);
     try {
@@ -42,7 +44,7 @@ app.post("/v1/video", async(req, res) => {
         console.log(e.msg);
     }
 });
-app.post("/v1/thumbnail", async(req, res) => {
+app.post("/v1/thumbnail", async (req, res) => {
     const video = req.body;
     console.log(video);
     try {
@@ -51,7 +53,7 @@ app.post("/v1/thumbnail", async(req, res) => {
         res.send("failed to create");
     }
 });
-app.get("/v1/thumbnails", async(req, res) => {
+app.get("/v1/thumbnails", async (req, res) => {
     try {
         let videoDocList = await admin.firestore().collection("videos").listDocuments();
         let videoList = [];
@@ -72,8 +74,10 @@ app.get("/v1/thumbnails", async(req, res) => {
     }
 })
 
-app.delete("/v1/video/:id", async(req, res) => {
-    const { id } = req.params;
+app.delete("/v1/video/:id", async (req, res) => {
+    const {
+        id
+    } = req.params;
     if (id == undefined) {
         res.send({
             message: "Please set the vid"
@@ -86,7 +90,7 @@ app.delete("/v1/video/:id", async(req, res) => {
         })
     }
 });
-app.get("/v1/videos", async(req, res) => {
+app.get("/v1/videos", async (req, res) => {
     try {
         let videoDocList = await admin.firestore().collection("videos").listDocuments();
         let videoList = [];
@@ -109,8 +113,10 @@ app.get("/v1/videos", async(req, res) => {
     }
 });
 
-app.put("/v1/video/:id", async(req, res) => {
-    const { id } = req.params;
+app.put("/v1/video/:id", async (req, res) => {
+    const {
+        id
+    } = req.params;
     if (id == undefined) {
         res.send({
             massage: "Please set the vid"
@@ -135,8 +141,10 @@ app.put("/v1/video/:id", async(req, res) => {
     }
 });
 
-app.delete("/v1/video/:id", async(req, res) => {
-    const { id } = req.params;
+app.delete("/v1/video/:id", async (req, res) => {
+    const {
+        id
+    } = req.params;
     if (id == undefined) {
         res.send({
             message: "Please set the vid"
@@ -151,22 +159,24 @@ app.delete("/v1/video/:id", async(req, res) => {
 
 })
 
-app.get("/v1/video/:id", async(req, res) => {
-        const { id } = req.query;
-        if (id == undefined) {
-            res.send({
-                massage: "Please set the video id"
-            });
-            return;
-        }
-        let data = (await admin.firestore().collection("videos").doc(id).get()).data();
+app.get("/v1/video/:id", async (req, res) => {
+    const {
+        id
+    } = req.params;
+    if (id == undefined) {
         res.send({
-            data: data,
-        })
-
+            massage: "Please set the video id"
+        });
+        return;
+    }
+    let data = (await admin.firestore().collection("videos").doc(id).get()).data();
+    res.send({
+        data: data,
     })
-    //----------------------------------------------- For User
-app.post("/v1/User/Post", async(req, res) => {
+
+})
+//----------------------------------------------- For User
+app.post("/v1/User/Post", async (req, res) => {
     const User = req.body;
     console.log(User);
     try {
@@ -181,7 +191,7 @@ app.post("/v1/User/Post", async(req, res) => {
         res.send("failed" + User.id)
     }
 })
-app.get("/v1/User", async(req, res) => { /// get all items
+app.get("/v1/User", async (req, res) => { /// get all items
     var ListOfUser = [];
     var ListOfUserRef = await admin.firestore().collection('User').listDocuments();
     for (const User of ListOfUserRef) {
@@ -190,8 +200,10 @@ app.get("/v1/User", async(req, res) => { /// get all items
     }
     res.send(ListOfUser);
 })
-app.put('/v1/User/Put', async(req, res) => {
-    const { id } = req.query;
+app.put('/v1/User/Put', async (req, res) => {
+    const {
+        id
+    } = req.query;
     if (id == undefined) {
         res.send({
             Status: " Set the item id"
@@ -222,8 +234,10 @@ app.put('/v1/User/Put', async(req, res) => {
         status: " id not exist"
     });
 })
-app.delete('/v1/User/Delete', async(req, res) => {
-    let { id } = req.query;
+app.delete('/v1/User/Delete', async (req, res) => {
+    let {
+        id
+    } = req.query;
     if (id == undefined) {
         res.send({
             "Status": "Please choose another id",
@@ -237,7 +251,7 @@ app.delete('/v1/User/Delete', async(req, res) => {
     }
 });
 //---------------------------------- For Comment
-app.post("/v1/Comment/Post", async(req, res) => {
+app.post("/v1/Comment/Post", async (req, res) => {
     const Comment = req.body;
     console.log(Comment);
     try {
@@ -260,7 +274,7 @@ app.post("/v1/Comment/Post", async(req, res) => {
         res.send("failed" + Comment.id)
     }
 })
-app.get("/v1/Comment", async(req, res) => { /// get all items
+app.get("/v1/Comment", async (req, res) => { /// get all items
     var ListOfCmt = [];
     var ListOfCmtRef = await admin.firestore().collection('Comment').listDocuments();
     for (const Comment of ListOfCmtRef) {
@@ -269,8 +283,10 @@ app.get("/v1/Comment", async(req, res) => { /// get all items
     }
     res.send(ListOfCmt);
 })
-app.delete('/v1/Comment/Delete', async(req, res) => {
-    let { id } = req.query;
+app.delete('/v1/Comment/Delete', async (req, res) => {
+    let {
+        id
+    } = req.query;
     if (id == undefined) {
         res.send({
             "Status": "Please choose another id",
@@ -283,8 +299,10 @@ app.delete('/v1/Comment/Delete', async(req, res) => {
         })
     }
 });
-app.put('/v1/Comment/Put', async(req, res) => {
-    const { id } = req.query;
+app.put('/v1/Comment/Put', async (req, res) => {
+    const {
+        id
+    } = req.query;
     if (id == undefined) {
         res.send({
             Status: " Set the item id"
