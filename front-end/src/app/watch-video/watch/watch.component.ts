@@ -7,11 +7,13 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http'
 import { AngularFirestore } from '@angular/fire/firestore';
 import { LikeDislikeService } from '../../ui/service/like-dislike/like-dislike.service'
+import * as firebase from 'firebase'
 import { AuthenticationService } from "../../ui/service/auth.service"
 interface Comment {
   name: string;
   photoURL: string;
   content: string;
+  time:Date;
 }
 @Component({
   selector: 'app-watch',
@@ -50,17 +52,24 @@ export class WatchComponent implements OnInit {
       //console.log(arrayId);
       let docRefComment = this.fb.collection("Comment");
       let docRefUser = this.fb.collection("User");
+
       arrayId.forEach(element => {
         docRefComment.doc(element).get().toPromise().then(async value => {
           let content = value.data()['content'];
+
+          let preasedTime = <Date>value.data()['time'].toDate()
+          
           await docRefUser.doc(value.data()['uid']).get().toPromise().then(valueUser => {
             let comment: Comment = {
               name: valueUser.data()['name'],
               photoURL: valueUser.data()["avatarURL"],
               content: content,
+              time: preasedTime
             };
 
             this.getcomment.push(comment);
+            this.getcomment = [...this.getcomment.sort((a,b)=> new Date(a.time).getTime() -  new Date(b.time).getTime())].reverse()
+            console.log(this.getcomment);
           })
         })
       });
