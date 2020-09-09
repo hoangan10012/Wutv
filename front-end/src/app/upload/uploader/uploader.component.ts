@@ -23,7 +23,7 @@ export class UploaderComponent implements OnInit {
     Validators.minLength(5)
   ]);
   onChange() {
-    // this.form.emit(this.titleValid.valid);
+    console.log(this.uploadform);
   }
   isHovering: boolean;
   toggleHover(event: boolean) {
