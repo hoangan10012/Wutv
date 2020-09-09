@@ -27,6 +27,7 @@ export class WatchComponent implements OnInit {
   src: string;
   button_like = '';
   button_dislike = '';
+  videoOwner;
   vidName: string;
   public videoid;
   view_total: number = 0;
@@ -126,10 +127,16 @@ export class WatchComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.vid);
-    this.http.get(environment.endpoint + '/v1/video/' + this.vid).toPromise().then(data => {
+    this.http.get(environment.endpoint + '/v1/video/' + this.vid).toPromise().then( async data => {
       console.log(data)
       let id = parseInt(this.route.snapshot.paramMap.get('id'))
       this.src = data['data']['downloadURL'];
+      let owner = await this.getowner(data['data']['uid'])
+      console.log(owner)
+      this.videoOwner = {
+        'name':owner['name'],
+        'avatarURL':owner['avatarURL']
+      }
       console.log(this.src)
       this.vidName = data['path'];
       this.data_have = true;
@@ -160,6 +167,11 @@ export class WatchComponent implements OnInit {
 
       })
     })
+  }
+  public async getowner(id:string){
+    // let owner = this.fb.collection('videos').doc().get().toPromise();
+    let user = (await this.fb.collection('User').doc(id).get().toPromise()).data();
+    return user
   }
 }
 

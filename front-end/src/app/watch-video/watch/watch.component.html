@@ -35,7 +35,8 @@
                 </mat-grid-tile>
                 <mat-grid-tile rowspan="1" colspan="5">
                     <div class="owner-video-name">
-                        <h3>ower name</h3>
+                        <img *ngIf="videoOwner != null" [src]='videoOwner.avatarURL' style="width: 50px; border-radius: 50%;">
+                        <h3 *ngIf="videoOwner != null">{{videoOwner.name}}</h3>
                     </div>
                 </mat-grid-tile>
                 <mat-grid-tile rowspan="1" colspan="2">
