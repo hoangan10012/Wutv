@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/ui/service/auth.service';
   providedIn: 'root'
 })
 export class UploadService {
-  file: File;
+  file : File;
   fileThumnail: File;
   task: AngularFireUploadTask;
   taskThumnail: AngularFireUploadTask;
@@ -54,7 +54,7 @@ export class UploadService {
         commentId: [],
         likes: [],
         dislikes: [],
-        views: 0
+        views: 0,
       }).toPromise().then(value => {
         console.log(value)
       })
@@ -72,7 +72,6 @@ export class UploadService {
     //     );
     //   }),
     // );
-
     //The storage path
     const pathThumnail = `test/${Date.now()}_${this.fileThumnail.name}`;
     // Reference to storage bucket
