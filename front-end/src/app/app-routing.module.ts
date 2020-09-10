@@ -12,7 +12,7 @@ import {UploadComponent} from '../app/upload/upload.component'
 
 const routes: Routes = [{ path: 'Login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
 { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
-{ path: 'Watch-video', loadChildren: () => import('./watch-video/watch-video.module').then(m => m.WatchVideoModule) }
+{ path: 'Watch-video',  loadChildren: () => import('./watch-video/watch-video.module').then(m => m.WatchVideoModule) }
 ,{path: 'upload', component: UploadComponent, canActivate: [AuthGuard], children: [
     {path: 'uploader', component: UploaderComponent},
     {path: 'uploadtask', component:UploadTaskComponent},
@@ -20,9 +20,9 @@ const routes: Routes = [{ path: 'Login', loadChildren: () => import('./login/log
     {path: 'upthumbnailtask', component:UpthumbnailTaskComponent}
   ]},
 // { path: 'watch', loadChildren: () => import('./watch-video/watch-video.module').then(m => m.WatchVideoModule) },
-{path:"watch/:id",component:WatchComponent, canActivate: [AuthGuard]},
+{path:"watch/:id",component:WatchComponent,
 // {path:"home",component:HomeComponent},
-{path: "**", redirectTo: 'home'}
+}
 ];
 
 @NgModule({
