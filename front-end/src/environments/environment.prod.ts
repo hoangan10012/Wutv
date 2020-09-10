@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  endpoint : "http://localhost:8080",
+  endpoint : "http://35.220.146.92:8080",
   firebase: {
     apiKey: "AIzaSyAsEiGIPknqU-d7mZ1wfLYdsUx5e6ZvCY0",
     authDomain: "wutv-red.firebaseapp.com",

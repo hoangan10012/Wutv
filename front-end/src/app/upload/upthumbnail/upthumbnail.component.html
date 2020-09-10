@@ -5,12 +5,12 @@
         <p>Drag and Drop a File</p>
         <div class="file-label">
             <label class="file-label">
-             <input class="file-input"type="file" id="img" name="img" accept="image/*" (change)="onDrop($event.target.files)">
+             <input style="display: none;" class="file-input"type="file" id="img" name="img" accept="image/*" (change)="onDrop($event.target.files)">
          </label>
         </div>
     </div>
 
-    <h3>Uploads</h3>
+  
     <div *ngFor="let file of fileThumbnails">
         <app-upthumbnail-task [file]="file"></app-upthumbnail-task>
     </div>
