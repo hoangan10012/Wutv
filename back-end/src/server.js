@@ -33,6 +33,8 @@ app.post("/v1/video", async(req, res) => {
             "likes": video.likes,
             "dislikes": video.dislikes,
             "views": video.views,
+            "tittle": video.tittle,
+            "desc":video.tittle
             
 
         }).then(value => {
