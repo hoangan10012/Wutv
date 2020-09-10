@@ -31,3 +31,15 @@
         </mat-form-field>
     </div>
 </form> -->
+
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Title</mat-label>
+        <input matInput [formControl]="this.upload.tittleFromControl" placeholder="Input Title">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Desc</mat-label>
+        <textarea matInput [formControl]="this.upload.descFromControl" placeholder="Input Desc"></textarea>
+    </mat-form-field>
+</form>
