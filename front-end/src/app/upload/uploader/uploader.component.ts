@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output,NgModule } from '@angular/core';
 import { FormControl,FormGroup, Validators } from "@angular/forms";
 import { UploadService } from 'src/app/ui/service/upload.service';
+import { fromCollectionRef } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-uploader',
@@ -11,6 +12,7 @@ export class UploaderComponent implements OnInit {
 
  
   constructor(public upload:UploadService) { }
+
   files : Array<File> = [];
   // uploadform = new FormGroup({
   //   tittle: new FormControl(''),
