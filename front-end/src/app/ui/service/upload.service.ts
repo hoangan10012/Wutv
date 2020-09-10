@@ -7,10 +7,13 @@ import { finalize, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../environments/environment'
 import { AuthenticationService } from 'src/app/ui/service/auth.service';
+import { FormControl } from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
+  tittleFromControl = new FormControl("");
+  descFromControl = new FormControl ("");
   file : File;
   fileThumnail: File;
   task: AngularFireUploadTask;
@@ -55,6 +58,8 @@ export class UploadService {
         likes: [],
         dislikes: [],
         views: 0,
+        tittle: this.tittleFromControl.value,
+        desc: this.descFromControl.value
       }).toPromise().then(value => {
         console.log(value)
       })
